@@ -182,19 +182,13 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
     <div className="relative h-full w-full overflow-hidden">
 
       {/* ── Ambient color wash ── */}
-      <AnimatePresence>
-        <motion.div
-          key={`wash-${current}`}
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse 90% 70% at 50% 45%, rgba(${s.rgb},0.1) 0%, transparent 65%)`,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.7 }}
-        />
-      </AnimatePresence>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse 90% 70% at 50% 45%, rgba(${s.rgb},0.1) 0%, transparent 65%)`,
+          transition: 'background 0.2s ease',
+        }}
+      />
 
       {/* ── Card ── */}
       <div className="absolute inset-0 flex items-center justify-center px-4 pb-8">
@@ -206,7 +200,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
             initial="enter"
             animate="center"
             exit="exit"
-            transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
             className="glass-strong relative w-full max-w-5xl overflow-hidden rounded-3xl"
             style={{
               border:    `1px solid rgba(${s.rgb}, 0.2)`,
@@ -225,9 +219,9 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
               >
                 <motion.div
                   key={`icon-${current}`}
-                  initial={{ scale: 0.7, opacity: 0 }}
+                  initial={{ scale: 0.85, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
-                  transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+                  transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
                   className={`flex h-16 w-16 items-center justify-center rounded-2xl bg-gradient-to-br ${s.grad}`}
                   style={{ boxShadow: s.glow }}
                 >
@@ -248,10 +242,10 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`content-${current}`}
-                    initial={{ opacity: 0, y: 8 }}
+                    initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
-                    exit={{ opacity: 0, y: -8 }}
-                    transition={{ duration: 0.3, ease: 'easeOut' }}
+                    exit={{ opacity: 0, y: -4 }}
+                    transition={{ duration: 0.15, ease: 'easeOut' }}
                     className="flex flex-1 flex-col"
                   >
                     <h3 className="mb-2 text-[21px] font-bold leading-snug text-text-primary">

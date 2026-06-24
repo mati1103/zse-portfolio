@@ -82,19 +82,13 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
     <div className="relative h-full w-full overflow-hidden">
 
       {/* Ambient wash */}
-      <AnimatePresence>
-        <motion.div
-          key={`wash-${current}`}
-          className="pointer-events-none absolute inset-0"
-          style={{
-            background: `radial-gradient(ellipse 80% 60% at 60% 50%, rgba(${s.rgb},0.09) 0%, transparent 65%)`,
-          }}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.8 }}
-        />
-      </AnimatePresence>
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `radial-gradient(ellipse 80% 60% at 60% 50%, rgba(${s.rgb},0.09) 0%, transparent 65%)`,
+          transition: 'background 0.2s ease',
+        }}
+      />
 
       <div className="absolute inset-0 flex px-10">
 
@@ -151,10 +145,10 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
           <AnimatePresence mode="wait">
             <motion.div
               key={current}
-              initial={{ opacity: 0, y: 18 }}
+              initial={{ opacity: 0, y: 8 }}
               animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -14 }}
-              transition={{ duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] }}
+              exit={{ opacity: 0, y: -6 }}
+              transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <p
                 className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em]"
