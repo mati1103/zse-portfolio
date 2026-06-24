@@ -104,7 +104,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             whileHover={{ scale: 1.03, borderColor: 'rgba(255,255,255,0.25)' }}
             className="rounded-xl border border-white/[0.1] px-8 py-3.5 text-base font-medium text-text-secondary transition-all duration-200 hover:text-text-primary"
           >
-            admin@zarembkasoftware.com
+            Contact: admin@zarembkasoftware.com
           </motion.a>
         </div>
       </div>
