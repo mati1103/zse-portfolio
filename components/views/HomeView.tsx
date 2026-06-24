@@ -32,60 +32,38 @@ const STATS = [
   },
 ]
 
-const container = {
-  hidden: {},
-  show:   { transition: { staggerChildren: 0.07, delayChildren: 0 } },
-}
-
-const fade = {
-  hidden: { opacity: 0, y: 14, filter: 'blur(6px)' },
-  show:   { opacity: 1, y: 0,  filter: 'blur(0px)',
-            transition: { duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
-
 export default function HomeView({ onNavigate }: HomeViewProps) {
   return (
     <div className="flex h-full w-full items-center justify-center px-6">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="flex w-full max-w-2xl flex-col items-center"
-      >
+      <div className="flex w-full max-w-2xl flex-col items-center">
         {/* Status badge */}
-        <motion.div variants={fade} className="mb-6">
+        <div className="mb-6">
           <div className="flex items-center gap-2.5 rounded-full border border-accent-violet/30 bg-accent-violet/[0.08] px-5 py-2 backdrop-blur-sm">
             <span className="block h-2 w-2 rounded-full bg-accent-violet-light animate-pulse-dot shadow-[0_0_8px_rgba(167,139,250,0.9)]" />
             <span className="text-[13px] font-medium tracking-wide text-accent-violet-light">
               Now accepting new projects
             </span>
           </div>
-        </motion.div>
+        </div>
 
         {/* Headline */}
-        <motion.h1
-          variants={fade}
-          className="mb-6 text-center text-[48px] font-bold leading-[1.12] tracking-tight lg:text-[64px]"
-        >
+        <h1 className="mb-6 text-center text-[48px] font-bold leading-[1.12] tracking-tight lg:text-[64px]">
           <span className="whitespace-nowrap">
             <span className="text-text-primary">Built </span>
             <span className="gradient-text">From Scratch.</span>
           </span>
           <br />
           <span className="whitespace-nowrap text-text-primary">Every Time.</span>
-        </motion.h1>
+        </h1>
 
         {/* Subheadline */}
-        <motion.p
-          variants={fade}
-          className="mb-10 max-w-lg text-center text-[18px] leading-relaxed text-text-secondary"
-        >
+        <p className="mb-10 max-w-lg text-center text-[18px] leading-relaxed text-text-secondary">
           Data-driven web infrastructure with zero templates and zero shortcuts.
           Precision systems, fixed pricing, and total singular focus — every time.
-        </motion.p>
+        </p>
 
         {/* Stat cards */}
-        <motion.div variants={fade} className="mb-10 grid w-full grid-cols-3 gap-4">
+        <div className="mb-10 grid w-full grid-cols-3 gap-4">
           {STATS.map(({ icon: Icon, label, desc, grad, glow }, i) => (
             <motion.div
               key={i}
@@ -105,10 +83,10 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
               <p className="text-[13px] leading-relaxed text-text-muted">{desc}</p>
             </motion.div>
           ))}
-        </motion.div>
+        </div>
 
         {/* CTAs */}
-        <motion.div variants={fade} className="flex items-center gap-3">
+        <div className="flex items-center gap-3">
           <motion.button
             onClick={() => onNavigate('contact')}
             whileHover={{ scale: 1.05 }}
@@ -128,8 +106,8 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
           >
             contact@zse.dev
           </motion.a>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

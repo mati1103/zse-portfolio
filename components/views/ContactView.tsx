@@ -17,16 +17,6 @@ const INPUT_CLASS =
 
 const LABEL_CLASS = 'mb-1.5 block text-[12px] font-semibold uppercase tracking-wider text-text-muted'
 
-const container = {
-  hidden: {},
-  show:   { transition: { staggerChildren: 0.07, delayChildren: 0 } },
-}
-const fade = {
-  hidden: { opacity: 0, y: 14, filter: 'blur(6px)' },
-  show:   { opacity: 1, y: 0, filter: 'blur(0px)',
-            transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
-
 export default function ContactView() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', company: '',
@@ -85,14 +75,9 @@ export default function ContactView() {
 
   return (
     <div className="flex h-full w-full items-center justify-center overflow-hidden px-6 pb-6">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="grid w-full max-w-6xl grid-cols-[1fr_1.6fr] gap-12"
-      >
+      <div className="grid w-full max-w-6xl grid-cols-[1fr_1.6fr] gap-12">
         {/* ── Left: info panel ── */}
-        <motion.div variants={fade} className="flex flex-col justify-center gap-7">
+        <div className="flex flex-col justify-center gap-7">
           <div>
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
               Get Started
@@ -138,11 +123,10 @@ export default function ContactView() {
               </a>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ── Right: form ── */}
-        <motion.div
-          variants={fade}
+        <div
           className="rounded-2xl p-8"
           style={{
             background: 'rgba(255,255,255,0.03)',
@@ -240,8 +224,8 @@ export default function ContactView() {
               )}
             </motion.button>
           </form>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

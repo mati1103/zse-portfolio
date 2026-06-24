@@ -8,16 +8,6 @@ interface PricingViewProps {
   onNavigate: (view: View) => void
 }
 
-const container = {
-  hidden: {},
-  show:   { transition: { staggerChildren: 0.06, delayChildren: 0 } },
-}
-const fade = {
-  hidden: { opacity: 0, y: 14, filter: 'blur(6px)' },
-  show:   { opacity: 1, y: 0,  filter: 'blur(0px)',
-            transition: { duration: 0.35, ease: [0.25, 0.46, 0.45, 0.94] } },
-}
-
 const TIERS = [
   {
     icon:      Globe,
@@ -83,14 +73,9 @@ const MAINTENANCE = [
 export default function PricingView({ onNavigate }: PricingViewProps) {
   return (
     <div className="flex h-full w-full items-center justify-center overflow-hidden px-4 pb-6">
-      <motion.div
-        variants={container}
-        initial="hidden"
-        animate="show"
-        className="w-full max-w-4xl"
-      >
+      <div className="w-full max-w-4xl">
         {/* ── Header ── */}
-        <motion.div variants={fade} className="mb-6 text-center">
+        <div className="mb-6 text-center">
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
             Flat-Rate Development
           </p>
@@ -101,10 +86,10 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
           <p className="mt-2 text-[13px] text-text-secondary">
             One fixed quote after scope approval · 50% upfront · 50% at launch
           </p>
-        </motion.div>
+        </div>
 
         {/* ── Main tiers ── */}
-        <motion.div variants={fade} className="mb-4 grid grid-cols-2 gap-3">
+        <div className="mb-4 grid grid-cols-2 gap-3">
           {TIERS.map((t) => (
             <div
               key={t.name}
@@ -187,10 +172,10 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
               </div>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* ── Maintenance ── */}
-        <motion.div variants={fade}>
+        <div>
           <div className="mb-2 flex items-center justify-between gap-2">
             <div className="flex items-center gap-2">
               <ShieldCheck strokeWidth={1.5} className="h-3.5 w-3.5 text-text-muted" />
@@ -225,8 +210,8 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
               </div>
             ))}
           </div>
-        </motion.div>
-      </motion.div>
+        </div>
+      </div>
     </div>
   )
 }

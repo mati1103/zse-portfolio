@@ -112,12 +112,7 @@ export default function PortfolioView() {
       <div className="mx-auto max-w-5xl">
 
         {/* ── Section header ── */}
-        <motion.div
-          initial={{ opacity: 0, y: -14 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-8 flex items-center justify-between"
-        >
+        <div className="mb-8 flex items-center justify-between">
           <div>
             <p className="mb-1 text-sm text-text-muted">Client work</p>
             <h2 className="text-2xl font-bold text-text-primary">Portfolio</h2>
@@ -126,14 +121,11 @@ export default function PortfolioView() {
             <span className="block h-2 w-2 rounded-full bg-emerald-400 animate-pulse-dot shadow-[0_0_8px_rgba(52,211,153,0.9)]" />
             <span className="text-[12px] font-semibold text-emerald-400">1 Live</span>
           </div>
-        </motion.div>
+        </div>
 
         {/* ── Project card ── */}
         <motion.div
           ref={cardRef}
-          initial={{ opacity: 0, y: 28 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.1, duration: 0.55 }}
           onMouseMove={handleMouseMove}
           onMouseLeave={handleMouseLeave}
           style={{
@@ -330,10 +322,7 @@ export default function PortfolioView() {
         </motion.div>
 
         {/* ── Testimonial ── */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.55, duration: 0.5 }}
+        <div
           className="mt-6 glass rounded-2xl overflow-hidden"
           style={{ border: '1px solid rgba(139,92,246,0.18)' }}
         >
@@ -373,15 +362,10 @@ export default function PortfolioView() {
               </div>
             </div>
           </div>
-        </motion.div>
+        </div>
 
         {/* ── More coming ── */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 0.85 }}
-          className="mt-6 flex items-center gap-3 text-sm text-text-muted"
-        >
+        <div className="mt-6 flex items-center gap-3 text-sm text-text-muted">
           {[0, 1, 2].map((i) => (
             <motion.span
               key={i}
@@ -391,7 +375,7 @@ export default function PortfolioView() {
             />
           ))}
           More projects coming soon
-        </motion.div>
+        </div>
 
       </div>
     </div>
