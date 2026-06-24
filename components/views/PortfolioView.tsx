@@ -68,8 +68,8 @@ const INFRA = [
   },
   {
     Icon:  Globe,
-    label: 'Google Domains',
-    desc:  'futureprosoccer.com registered via Google Domains. DNS A and CNAME records point to Vercel\'s edge network for fast global delivery.',
+    label: 'Squarespace',
+    desc:  'futureprosoccer.com registered via Squarespace. DNS A and CNAME records point to Vercel\'s edge network for fast global delivery.',
     grad:  'from-blue-500 to-cyan-500',
     glow:  '0 0 20px rgba(59,130,246,0.5)',
   },
