@@ -10,8 +10,8 @@ export async function POST(req: Request) {
   }
 
   const { error } = await resend.emails.send({
-    from: 'ZSE Inquiries <inquiries@zarembkasoftware.com>',
-    to: 'matiaszarembka@gmail.com',
+    from: 'ZSE Inquiries <admin@zarembkasoftware.com>',
+    to: 'admin@zarembkasoftware.com',
     replyTo: email,
     subject: `New Inquiry: ${service} — ${name}`,
     html: `
@@ -35,7 +35,7 @@ export async function POST(req: Request) {
   }
 
   const { error: confirmError } = await resend.emails.send({
-    from: 'Matiasz Zarembka <inquiries@zarembkasoftware.com>',
+    from: 'Matiasz Zarembka <admin@zarembkasoftware.com>',
     to: email,
     subject: `Thank you for your inquiry, ${name}`,
     html: `

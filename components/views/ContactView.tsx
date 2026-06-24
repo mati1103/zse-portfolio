@@ -116,10 +116,10 @@ export default function ContactView() {
             <div>
               <p className="text-[11px] text-text-muted">Prefer email directly?</p>
               <a
-                href="mailto:contact@zse.dev"
+                href="mailto:admin@zarembkasoftware.com"
                 className="text-[14px] font-semibold text-text-primary hover:text-accent-violet-light transition-colors duration-200"
               >
-                contact@zse.dev
+                admin@zarembkasoftware.com
               </a>
             </div>
           </div>
