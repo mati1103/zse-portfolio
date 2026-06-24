@@ -1,7 +1,6 @@
 'use client'
 
 import { useState } from 'react'
-import { AnimatePresence, motion } from 'framer-motion'
 import HUDNav from '@/components/HUDNav'
 import HomeView from '@/components/views/HomeView'
 import AboutView from '@/components/views/AboutView'
@@ -12,31 +11,10 @@ import ContactView from '@/components/views/ContactView'
 
 export type View = 'home' | 'process' | 'pricing' | 'portfolio' | 'contact' | 'about'
 
-const VIEW_ORDER: View[] = ['home', 'process', 'pricing', 'portfolio', 'contact', 'about']
-
-const variants = {
-  enter: (dir: number) => ({
-    x: dir > 0 ? 48 : -48,
-    opacity: 0,
-  }),
-  center: {
-    x: 0,
-    opacity: 1,
-  },
-  exit: (dir: number) => ({
-    x: dir < 0 ? 48 : -48,
-    opacity: 0,
-  }),
-}
-
 export default function Page() {
   const [activeView, setActiveView] = useState<View>('home')
-  const [direction, setDirection] = useState(1)
 
   const navigateTo = (view: View) => {
-    const from = VIEW_ORDER.indexOf(activeView)
-    const to = VIEW_ORDER.indexOf(view)
-    setDirection(to >= from ? 1 : -1)
     setActiveView(view)
   }
 
@@ -69,25 +47,14 @@ export default function Page() {
 
       {/* ── Content ── */}
       <main className="relative h-full w-full overflow-hidden">
-        <AnimatePresence custom={direction}>
-          <motion.div
-            key={activeView}
-            custom={direction}
-            variants={variants}
-            initial="enter"
-            animate="center"
-            exit="exit"
-            transition={{ duration: 0.28, ease: [0.25, 0.46, 0.45, 0.94] }}
-            className="absolute inset-0 pt-16 overflow-hidden"
-          >
+        <div className="absolute inset-0 pt-16 overflow-hidden">
             {activeView === 'home'      && <HomeView      onNavigate={navigateTo} />}
             {activeView === 'process'   && <ProcessView   onNavigate={navigateTo} />}
             {activeView === 'pricing'   && <PricingView   onNavigate={navigateTo} />}
             {activeView === 'portfolio' && <PortfolioView />}
             {activeView === 'contact'   && <ContactView />}
             {activeView === 'about'     && <AboutView onNavigate={navigateTo} />}
-          </motion.div>
-        </AnimatePresence>
+          </div>
       </main>
     </div>
   )
