@@ -9,12 +9,13 @@ export async function POST(req: Request) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
   }
 
-  const { error } = await resend.emails.send({
-    from: 'ZSE Inquiries <admin@zarembkasoftware.com>',
-    to: 'admin@zarembkasoftware.com',
-    replyTo: email,
-    subject: `New Inquiry: ${service} — ${name}`,
-    html: `
+  const [{ error }, { error: confirmError }] = await Promise.all([
+    resend.emails.send({
+      from: 'ZSE Inquiries <admin@zarembkasoftware.com>',
+      to: 'admin@zarembkasoftware.com',
+      replyTo: email,
+      subject: `New Inquiry: ${service} — ${name}`,
+      html: `
       <div style="font-family:sans-serif;max-width:560px;margin:0 auto">
         <h2 style="margin-bottom:4px">New Project Inquiry</h2>
         <p style="color:#888;margin-top:0">Submitted via ZSE website</p>
@@ -29,17 +30,12 @@ export async function POST(req: Request) {
         <p style="background:#f5f5f5;padding:12px;border-radius:6px;white-space:pre-wrap">${description}</p>
       </div>
     `,
-  })
-
-  if (error) {
-    return NextResponse.json({ error: error.message }, { status: 500 })
-  }
-
-  const { error: confirmError } = await resend.emails.send({
-    from: 'Matias Zarembka <admin@zarembkasoftware.com>',
-    to: email,
-    subject: `Thank you for your inquiry, ${name}`,
-    html: `
+    }),
+    resend.emails.send({
+      from: 'Matias Zarembka <admin@zarembkasoftware.com>',
+      to: email,
+      subject: `Thank you for your inquiry, ${name}`,
+      html: `
       <div style="font-family:sans-serif;max-width:580px;margin:0 auto;color:#1a1a1a">
         <div style="background:#0f0f14;padding:28px 32px;border-radius:12px 12px 0 0">
           <p style="margin:0;font-size:13px;font-weight:600;letter-spacing:0.08em;color:#a78bfa;text-transform:uppercase">Zarembka Software Engineering</p>
@@ -73,7 +69,12 @@ export async function POST(req: Request) {
         </div>
       </div>
     `,
-  })
+    }),
+  ])
+
+  if (error) {
+    return NextResponse.json({ error: error.message }, { status: 500 })
+  }
 
   if (confirmError) {
     console.error('Confirmation email failed:', confirmError.message)

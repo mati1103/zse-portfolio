@@ -192,7 +192,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
 
       {/* ── Card ── */}
       <div className="absolute inset-0 flex items-center justify-center px-4 pb-8">
-        <AnimatePresence mode="wait" custom={direction}>
+        <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
             key={current}
             custom={direction}

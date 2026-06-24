@@ -142,7 +142,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
         {/* ── Main content ── */}
         <div className="flex flex-1 flex-col justify-center pl-12 pr-8 py-12">
-          <AnimatePresence mode="wait">
+          <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={current}
               initial={{ opacity: 0, y: 8 }}

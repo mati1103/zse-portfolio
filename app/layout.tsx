@@ -24,6 +24,10 @@ export const metadata: Metadata = {
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
+      <head>
+        <link rel="preconnect" href="https://futureprosoccer.com" />
+        <link rel="prefetch" href="https://futureprosoccer.com" />
+      </head>
       <body
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans bg-base text-text-primary antialiased`}
       >
