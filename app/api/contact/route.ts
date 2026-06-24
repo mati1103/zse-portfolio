@@ -3,7 +3,7 @@ import { NextResponse } from 'next/server'
 
 export async function POST(req: Request) {
   const resend = new Resend(process.env.RESEND_API_KEY)
-  const { name, email, company, service, description, timeline } = await req.json()
+  const { name, email, phone, company, service, description, timeline } = await req.json()
 
   if (!name || !email || !description) {
     return NextResponse.json({ error: 'Missing required fields' }, { status: 400 })
@@ -21,6 +21,7 @@ export async function POST(req: Request) {
         <hr style="border:none;border-top:1px solid #eee;margin:16px 0"/>
         <p><strong>Name:</strong> ${name}</p>
         <p><strong>Email:</strong> <a href="mailto:${email}">${email}</a></p>
+        ${phone ? `<p><strong>Phone:</strong> ${phone}</p>` : ''}
         <p><strong>Company:</strong> ${company}</p>
         <p><strong>Service:</strong> ${service}</p>
         <p><strong>Timeline:</strong> ${timeline}</p>
