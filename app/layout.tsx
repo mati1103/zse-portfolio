@@ -16,7 +16,7 @@ const jetbrainsMono = JetBrains_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'ZSE — Zarembka Software Engineering',
+  title: 'Zarembka Software Eng',
   description:
     'Zero Templates. Zero Drag-and-Drop. Data-driven web infrastructure engineered from absolute scratch.',
 }
