@@ -107,7 +107,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
                 />
               )}
 
-              <div className="p-5">
+              <div className="p-5 flex flex-col h-full">
                 <div className="mb-4 flex items-start justify-between">
                   <div className="flex items-center gap-2.5">
                     <div
@@ -149,7 +149,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
                   ))}
                 </ul>
 
-                <p className="mb-4 text-[11px] text-text-muted">{t.extra}</p>
+                <p className="mt-auto mb-4 text-[11px] text-text-muted">{t.extra}</p>
 
                 <motion.button
                   onClick={() => onNavigate('contact')}
