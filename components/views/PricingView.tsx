@@ -72,14 +72,14 @@ const MAINTENANCE = [
 
 export default function PricingView({ onNavigate }: PricingViewProps) {
   return (
-    <div className="flex h-full w-full items-center justify-center overflow-hidden px-4 pb-6">
+    <div className="flex h-full w-full overflow-y-auto md:items-center md:justify-center px-4 py-6 md:overflow-hidden md:pb-6">
       <div className="w-full max-w-4xl">
         {/* ── Header ── */}
-        <div className="mb-6 text-center">
+        <div className="mb-5 text-center md:mb-6">
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
             Flat-Rate Development
           </p>
-          <h2 className="text-3xl font-bold tracking-tight text-text-primary lg:text-4xl">
+          <h2 className="text-2xl font-bold tracking-tight text-text-primary md:text-4xl">
             Simple pricing.{' '}
             <span className="gradient-text">Serious software.</span>
           </h2>
@@ -89,7 +89,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
         </div>
 
         {/* ── Main tiers ── */}
-        <div className="mb-4 grid grid-cols-2 gap-3">
+        <div className="mb-4 grid grid-cols-1 gap-3 md:grid-cols-2">
           {TIERS.map((t) => (
             <div
               key={t.name}
@@ -185,7 +185,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
               Optional
             </span>
           </div>
-          <div className="grid grid-cols-3 gap-2">
+          <div className="grid grid-cols-1 gap-2 sm:grid-cols-3">
             {MAINTENANCE.map((m) => (
               <div
                 key={m.name}

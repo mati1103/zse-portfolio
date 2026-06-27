@@ -108,7 +108,7 @@ export default function PortfolioView() {
   const handleMouseLeave = () => { rawX.set(0); rawY.set(0) }
 
   return (
-    <div className="h-full overflow-y-auto overflow-x-hidden p-6 lg:p-10">
+    <div className="h-full overflow-y-auto overflow-x-hidden p-4 lg:p-10">
       <div className="mx-auto max-w-5xl">
 
         {/* ── Section header ── */}
@@ -139,7 +139,7 @@ export default function PortfolioView() {
           <div className="h-[3px] w-full bg-gradient-to-r from-accent-violet via-accent-blue to-accent-pink" />
           <div className="pointer-events-none absolute -right-20 -top-20 h-72 w-72 rounded-full bg-accent-violet/[0.06] blur-3xl" />
 
-          <div className="p-8 lg:p-10">
+          <div className="p-5 lg:p-10">
 
             {/* ── Project header (always visible) ── */}
             <div className="mb-8 flex flex-col gap-6 lg:flex-row lg:items-start lg:justify-between">
@@ -147,7 +147,7 @@ export default function PortfolioView() {
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-widest text-text-muted">
                   Client project — Personal training platform
                 </p>
-                <h3 className="mb-3 text-4xl font-black leading-tight tracking-tight lg:text-5xl">
+                <h3 className="mb-3 text-3xl font-black leading-tight tracking-tight lg:text-5xl">
                   <span className="gradient-text">FuturePro</span>
                   <span className="text-text-primary"> Soccer</span>
                 </h3>
@@ -327,7 +327,7 @@ export default function PortfolioView() {
           style={{ border: '1px solid rgba(139,92,246,0.18)' }}
         >
           <div className="h-[2px] w-full bg-gradient-to-r from-accent-violet via-accent-blue to-transparent" />
-          <div className="flex items-start gap-6 p-7">
+          <div className="flex items-start gap-4 p-5 md:gap-6 md:p-7">
             <span
               className="shrink-0 text-[72px] font-black leading-none select-none"
               style={{

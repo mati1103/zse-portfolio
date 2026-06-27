@@ -79,7 +79,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
   const s = SECTIONS[current]
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <div className="relative h-full w-full overflow-x-hidden overflow-y-auto md:overflow-hidden">
 
       {/* Ambient wash */}
       <div
@@ -90,10 +90,28 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
         }}
       />
 
-      <div className="absolute inset-0 flex px-10">
+      <div className="relative flex h-full flex-col md:flex-row md:px-10">
 
-        {/* ── Left nav ── */}
-        <div className="flex w-52 shrink-0 flex-col justify-center gap-1">
+        {/* ── Mobile: horizontal tab bar ── */}
+        <div className="flex md:hidden gap-1.5 overflow-x-auto px-4 pt-3 pb-2 shrink-0">
+          {SECTIONS.map((sec, i) => (
+            <button
+              key={sec.id}
+              onClick={() => setCurrent(i)}
+              className="shrink-0 rounded-lg px-3.5 py-2 text-[13px] font-medium transition-all duration-200"
+              style={{
+                background: i === current ? `rgba(${sec.rgb}, 0.12)` : 'transparent',
+                color:      i === current ? `rgba(${sec.rgb}, 1)`    : 'rgba(255,255,255,0.35)',
+                border:     `1px solid ${i === current ? `rgba(${sec.rgb}, 0.3)` : 'rgba(255,255,255,0.06)'}`,
+              }}
+            >
+              {sec.label}
+            </button>
+          ))}
+        </div>
+
+        {/* ── Desktop: Left sidebar nav ── */}
+        <div className="hidden md:flex w-52 shrink-0 flex-col justify-center gap-1">
           {SECTIONS.map((sec, i) => (
             <button
               key={sec.id}
@@ -108,9 +126,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
               />
               <span
                 className="text-[15px] font-medium leading-tight transition-colors duration-200"
-                style={{
-                  color: i === current ? `rgba(${sec.rgb}, 1)` : 'rgba(255,255,255,0.3)',
-                }}
+                style={{ color: i === current ? `rgba(${sec.rgb}, 1)` : 'rgba(255,255,255,0.3)' }}
               >
                 {sec.label}
               </span>
@@ -134,14 +150,14 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
           </div>
         </div>
 
-        {/* ── Divider ── */}
+        {/* ── Desktop: Divider ── */}
         <div
-          className="my-12 w-px shrink-0"
+          className="hidden md:block my-12 w-px shrink-0"
           style={{ background: `rgba(${s.rgb}, 0.15)` }}
         />
 
         {/* ── Main content ── */}
-        <div className="flex flex-1 flex-col justify-center pl-12 pr-8 py-12">
+        <div className="flex flex-1 flex-col justify-start md:justify-center px-4 md:pl-12 md:pr-8 py-4 md:py-12">
           <AnimatePresence mode="wait" initial={false}>
             <motion.div
               key={current}
@@ -151,28 +167,43 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
               transition={{ duration: 0.15, ease: [0.25, 0.46, 0.45, 0.94] }}
             >
               <p
-                className="mb-4 text-[11px] font-bold uppercase tracking-[0.3em]"
+                className="mb-3 text-[11px] font-bold uppercase tracking-[0.3em]"
                 style={{ color: `rgba(${s.rgb}, 0.7)` }}
               >
                 {s.tag}
               </p>
 
               <h2
-                className="mb-8 text-[38px] font-black leading-[1.15] tracking-tight text-text-primary"
+                className="mb-5 text-[24px] font-black leading-[1.2] tracking-tight text-text-primary md:mb-8 md:text-[38px] md:leading-[1.15]"
                 style={{ whiteSpace: 'pre-line' }}
               >
                 {s.headline}
               </h2>
 
-              <div className="space-y-5">
+              <div className="space-y-4 md:space-y-5">
                 {s.body.map((para, i) => (
-                  <p key={i} className="text-[17px] leading-[1.8] text-text-secondary">
+                  <p key={i} className="text-[14px] leading-[1.75] text-text-secondary md:text-[17px] md:leading-[1.8]">
                     {para}
                   </p>
                 ))}
               </div>
 
-              <div className="mt-10 flex items-center gap-2">
+              {/* Mobile CTA */}
+              <motion.button
+                onClick={() => onNavigate('contact')}
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className={`mt-6 flex md:hidden items-center gap-2 text-[14px] font-semibold bg-gradient-to-r ${s.grad} bg-clip-text text-transparent`}
+              >
+                Start a Project
+                <ArrowRight
+                  strokeWidth={2.5}
+                  className="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-0.5"
+                  style={{ color: `rgba(${s.rgb}, 0.9)` }}
+                />
+              </motion.button>
+
+              <div className="mt-6 flex items-center gap-2 md:mt-10">
                 {SECTIONS.map((_, i) => (
                   <button
                     key={i}

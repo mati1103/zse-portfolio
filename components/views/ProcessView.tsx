@@ -147,15 +147,11 @@ const STEPS: Step[] = [
   },
 ]
 
-/* ─── Card variants ─── */
-
 const card = {
   enter:  (d: number) => ({ x: d > 0 ? 40 : -40, opacity: 0, filter: 'blur(6px)' }),
   center: { x: 0, opacity: 1, filter: 'blur(0px)' },
   exit:   (d: number) => ({ x: d < 0 ? 40 : -40, opacity: 0, filter: 'blur(6px)' }),
 }
-
-/* ─── Component ─── */
 
 export default function ProcessView({ onNavigate }: ProcessViewProps) {
   const [current,   setCurrent]   = useState(0)
@@ -210,11 +206,32 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
             {/* Colored top bar */}
             <div className={`h-1 w-full bg-gradient-to-r ${s.grad}`} />
 
-            <div className="flex">
+            {/* ── Mobile: compact header row ── */}
+            <div
+              className="flex md:hidden items-center gap-4 px-5 py-4"
+              style={{ background: `rgba(${s.rgb}, 0.05)`, borderBottom: `1px solid rgba(${s.rgb}, 0.12)` }}
+            >
+              <motion.div
+                key={`icon-mobile-${current}`}
+                initial={{ scale: 0.85, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                transition={{ duration: 0.15 }}
+                className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-gradient-to-br ${s.grad}`}
+                style={{ boxShadow: s.glow }}
+              >
+                <s.Icon strokeWidth={1.5} className="h-5 w-5 text-white" />
+              </motion.div>
+              <div>
+                <p className="text-[9px] font-semibold uppercase tracking-[0.2em] text-text-muted">Step {s.num} of 10</p>
+                <p className="text-[16px] font-bold text-text-primary leading-tight">{s.title}</p>
+              </div>
+            </div>
 
-              {/* ── Left panel ── */}
+            <div className="flex flex-col md:flex-row">
+
+              {/* ── Desktop: Left panel ── */}
               <div
-                className="flex w-56 shrink-0 flex-col items-center justify-center gap-5 p-11"
+                className="hidden md:flex w-56 shrink-0 flex-col items-center justify-center gap-5 p-11"
                 style={{ background: `rgba(${s.rgb}, 0.05)`, borderRight: `1px solid rgba(${s.rgb}, 0.12)` }}
               >
                 <motion.div
@@ -238,7 +255,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
               </div>
 
               {/* ── Right panel ── */}
-              <div className="flex flex-1 flex-col p-11">
+              <div className="flex flex-1 flex-col p-5 md:p-11">
                 <AnimatePresence mode="wait">
                   <motion.div
                     key={`content-${current}`}
@@ -248,15 +265,15 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
                     transition={{ duration: 0.15, ease: 'easeOut' }}
                     className="flex flex-1 flex-col"
                   >
-                    <h3 className="mb-2 text-[21px] font-bold leading-snug text-text-primary">
+                    <h3 className="hidden md:block mb-2 text-[21px] font-bold leading-snug text-text-primary">
                       {s.title}
                     </h3>
-                    <p className="mb-5 text-[13.5px] leading-relaxed text-text-secondary">
+                    <p className="mb-4 text-[13px] leading-relaxed text-text-secondary md:mb-5 md:text-[13.5px]">
                       {s.description}
                     </p>
 
                     {/* 2×2 highlights */}
-                    <div className="mb-5 grid grid-cols-2 gap-2">
+                    <div className="mb-4 grid grid-cols-2 gap-2 md:mb-5">
                       {s.highlights.map((h, i) => (
                         <div
                           key={i}
@@ -332,7 +349,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
       </div>
 
       {/* ── Progress pills ── */}
-      <div className="absolute bottom-4 left-0 right-0 flex items-center justify-center gap-1.5">
+      <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex items-center justify-center gap-1.5">
         {STEPS.map((step, i) => (
           <button
             key={i}

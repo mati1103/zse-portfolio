@@ -74,10 +74,11 @@ export default function ContactView() {
   }
 
   return (
-    <div className="flex h-full w-full items-center justify-center overflow-hidden px-6 pb-6">
-      <div className="grid w-full max-w-6xl grid-cols-[1fr_1.6fr] gap-12">
-        {/* ── Left: info panel ── */}
-        <div className="flex flex-col justify-center gap-7">
+    <div className="flex h-full w-full overflow-y-auto md:items-center md:justify-center px-5 py-6 md:px-6 md:overflow-hidden md:pb-6">
+      <div className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
+
+        {/* ── Left: info panel (desktop only) ── */}
+        <div className="hidden md:flex flex-col justify-center gap-7">
           <div>
             <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
               Get Started
@@ -126,104 +127,117 @@ export default function ContactView() {
         </div>
 
         {/* ── Right: form ── */}
-        <div
-          className="rounded-2xl p-8"
-          style={{
-            background: 'rgba(255,255,255,0.03)',
-            border:     '1px solid rgba(139,92,246,0.2)',
-            boxShadow:  '0 0 40px rgba(139,92,246,0.07)',
-          }}
-        >
-          <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-accent-violet to-accent-blue rounded-t-2xl" style={{ position: 'relative', marginBottom: '20px', height: '1px', background: 'linear-gradient(to right, #8b5cf6, #3b82f6)' }} />
+        <div>
+          {/* Mobile title */}
+          <div className="mb-5 md:hidden">
+            <h2 className="text-[26px] font-bold tracking-tight text-text-primary">
+              Let's build{' '}
+              <span className="gradient-text">something.</span>
+            </h2>
+            <p className="mt-1.5 text-[14px] leading-relaxed text-text-secondary">
+              Tell us about your project and we'll get back to you within one business day.
+            </p>
+          </div>
 
-          <form onSubmit={submit} className="space-y-5">
-            <div className="grid grid-cols-2 gap-3">
+          <div
+            className="rounded-2xl p-5 md:p-8"
+            style={{
+              background: 'rgba(255,255,255,0.03)',
+              border:     '1px solid rgba(139,92,246,0.2)',
+              boxShadow:  '0 0 40px rgba(139,92,246,0.07)',
+            }}
+          >
+            <div style={{ position: 'relative', marginBottom: '20px', height: '1px', background: 'linear-gradient(to right, #8b5cf6, #3b82f6)' }} />
+
+            <form onSubmit={submit} className="space-y-4 md:space-y-5">
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label className={LABEL_CLASS}>
+                    Name <span className="text-accent-violet">*</span>
+                  </label>
+                  <input required value={form.name} onChange={set('name')} placeholder="Jane Smith" className={INPUT_CLASS} />
+                </div>
+                <div>
+                  <label className={LABEL_CLASS}>
+                    Email <span className="text-accent-violet">*</span>
+                  </label>
+                  <input required type="email" value={form.email} onChange={set('email')} placeholder="jane@company.com" className={INPUT_CLASS} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label className={LABEL_CLASS}>
+                    Phone <span className="text-accent-violet">*</span>
+                  </label>
+                  <input required type="tel" value={form.phone} onChange={set('phone')} placeholder="(555) 000-0000" className={INPUT_CLASS} />
+                </div>
+                <div>
+                  <label className={LABEL_CLASS}>
+                    Company / Business <span className="text-accent-violet">*</span>
+                  </label>
+                  <input required value={form.company} onChange={set('company')} placeholder="Acme Inc." className={INPUT_CLASS} />
+                </div>
+              </div>
+
+              <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+                <div>
+                  <label className={LABEL_CLASS}>Service</label>
+                  <select value={form.service} onChange={set('service')} className={INPUT_CLASS}>
+                    <option value="Marketing Website">Marketing Website</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="Maintenance Plan">Maintenance Plan</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div>
+                  <label className={LABEL_CLASS}>Timeline</label>
+                  <select value={form.timeline} onChange={set('timeline')} className={INPUT_CLASS}>
+                    {TIMELINES.map((t) => (
+                      <option key={t} value={t}>{t}</option>
+                    ))}
+                  </select>
+                </div>
+              </div>
+
               <div>
                 <label className={LABEL_CLASS}>
-                  Name <span className="text-accent-violet">*</span>
+                  Project Description <span className="text-accent-violet">*</span>
                 </label>
-                <input required value={form.name} onChange={set('name')} placeholder="Jane Smith" className={INPUT_CLASS} />
+                <textarea
+                  required
+                  rows={4}
+                  value={form.description}
+                  onChange={set('description')}
+                  placeholder="Tell me about your project — what you need built, any existing systems, and specific requirements..."
+                  className={`${INPUT_CLASS} resize-none`}
+                />
               </div>
-              <div>
-                <label className={LABEL_CLASS}>
-                  Email <span className="text-accent-violet">*</span>
-                </label>
-                <input required type="email" value={form.email} onChange={set('email')} placeholder="jane@company.com" className={INPUT_CLASS} />
-              </div>
-            </div>
 
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={LABEL_CLASS}>
-                  Phone <span className="text-accent-violet">*</span>
-                </label>
-                <input required type="tel" value={form.phone} onChange={set('phone')} placeholder="(555) 000-0000" className={INPUT_CLASS} />
-              </div>
-              <div>
-                <label className={LABEL_CLASS}>
-                  Company / Business <span className="text-accent-violet">*</span>
-                </label>
-                <input required value={form.company} onChange={set('company')} placeholder="Acme Inc." className={INPUT_CLASS} />
-              </div>
-            </div>
-
-            <div className="grid grid-cols-2 gap-3">
-              <div>
-                <label className={LABEL_CLASS}>Service</label>
-                <select value={form.service} onChange={set('service')} className={INPUT_CLASS}>
-                  <option value="Marketing Website">Marketing Website</option>
-                  <option value="Web Application">Web Application</option>
-                  <option value="Maintenance Plan">Maintenance Plan</option>
-                  <option value="Other">Other</option>
-                </select>
-              </div>
-              <div>
-                <label className={LABEL_CLASS}>Timeline</label>
-                <select value={form.timeline} onChange={set('timeline')} className={INPUT_CLASS}>
-                  {TIMELINES.map((t) => (
-                    <option key={t} value={t}>{t}</option>
-                  ))}
-                </select>
-              </div>
-            </div>
-
-            <div>
-              <label className={LABEL_CLASS}>
-                Project Description <span className="text-accent-violet">*</span>
-              </label>
-              <textarea
-                required
-                rows={5}
-                value={form.description}
-                onChange={set('description')}
-                placeholder="Tell me about your project — what you need built, any existing systems, and specific requirements..."
-                className={`${INPUT_CLASS} resize-none`}
-              />
-            </div>
-
-            {status === 'error' && (
-              <p className="text-[12px] text-red-400">{errorMsg}</p>
-            )}
-
-            <motion.button
-              type="submit"
-              disabled={status === 'loading'}
-              whileHover={{ scale: 1.01 }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-violet to-accent-blue py-4 text-[15px] font-semibold text-white disabled:opacity-60"
-              style={{ boxShadow: '0 0 28px rgba(139,92,246,0.45)' }}
-            >
-              <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
-              {status === 'loading' ? (
-                <Loader2 className="h-4 w-4 animate-spin" />
-              ) : (
-                <>
-                  <Send className="h-3.5 w-3.5" strokeWidth={2} />
-                  <span>Send Inquiry</span>
-                </>
+              {status === 'error' && (
+                <p className="text-[12px] text-red-400">{errorMsg}</p>
               )}
-            </motion.button>
-          </form>
+
+              <motion.button
+                type="submit"
+                disabled={status === 'loading'}
+                whileHover={{ scale: 1.01 }}
+                whileTap={{ scale: 0.98 }}
+                className="group relative flex w-full items-center justify-center gap-2 overflow-hidden rounded-xl bg-gradient-to-r from-accent-violet to-accent-blue py-4 text-[15px] font-semibold text-white disabled:opacity-60"
+                style={{ boxShadow: '0 0 28px rgba(139,92,246,0.45)' }}
+              >
+                <span className="absolute inset-0 -translate-x-full bg-gradient-to-r from-transparent via-white/15 to-transparent transition-transform duration-700 group-hover:translate-x-full" />
+                {status === 'loading' ? (
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                ) : (
+                  <>
+                    <Send className="h-3.5 w-3.5" strokeWidth={2} />
+                    <span>Send Inquiry</span>
+                  </>
+                )}
+              </motion.button>
+            </form>
+          </div>
         </div>
       </div>
     </div>
