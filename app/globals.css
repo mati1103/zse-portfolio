@@ -10,6 +10,15 @@ html, body {
   background-color: #07071a;
 }
 
+/* Eliminate 300ms tap delay and improve touch responsiveness */
+*, *::before, *::after {
+  touch-action: manipulation;
+}
+/* Re-allow scrolling in scroll containers */
+.overflow-y-auto, .overflow-y-scroll {
+  touch-action: pan-y;
+}
+
 ::-webkit-scrollbar { width: 4px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
