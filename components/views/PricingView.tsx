@@ -24,9 +24,9 @@ const TIERS = [
       'Mobile-responsive design',
       'SEO-friendly setup',
       'Contact forms & analytics',
-      '2 revision rounds · 30-day support',
+      '2 revision meetings · 30-day support',
     ],
-    extra: '+$250 per additional page',
+    extra: '+$250 / page · +$750 / integration',
   },
   {
     icon:      Database,
@@ -42,10 +42,9 @@ const TIERS = [
       'Everything in Marketing Website',
       'Database design & auth',
       'Role-based dashboards & admin panels',
-      'API integrations',
-      '3 revision rounds · 60-day support',
+      '3 revision meetings · 60-day support',
     ],
-    extra: '+$750 per integration',
+    extra: '+$750 / integration (Stripe, CRM, booking APIs, etc.)',
   },
 ]
 
