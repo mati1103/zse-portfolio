@@ -31,7 +31,7 @@ const TIERS = [
   {
     icon:      Database,
     name:      'Web Application',
-    price:     '$8,500',
+    price:     '$6,500',
     timeline:  '6–10 weeks',
     grad:      'from-accent-violet to-accent-blue',
     rgb:       '139,92,246',
