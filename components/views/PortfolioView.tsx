@@ -83,8 +83,8 @@ const PIPELINE = [
   { label: 'Live',       sub: 'Global edge',     Icon: Globe,     grad: 'from-emerald-400 to-green-500' },
 ]
 
-type Tab = 'Platform' | 'Pipeline' | 'Infrastructure' | 'Stack'
-const TABS: Tab[] = ['Platform', 'Pipeline', 'Infrastructure', 'Stack']
+type Tab = 'Platform' | 'Preview' | 'Pipeline' | 'Infrastructure' | 'Stack'
+const TABS: Tab[] = ['Platform', 'Preview', 'Pipeline', 'Infrastructure', 'Stack']
 
 export default function PortfolioView() {
   const [activeTab,     setActiveTab    ] = useState<Tab>('Platform')
@@ -180,35 +180,6 @@ export default function PortfolioView() {
 
             <div className="mb-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
-            {/* ── Screenshots ── */}
-            <div className="mb-6">
-              <p className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-text-muted">Platform Preview</p>
-              <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
-                <div className="overflow-hidden rounded-xl border border-white/[0.08]">
-                  <div className="border-b border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Athlete Portal</p>
-                    <p className="mt-0.5 text-[11px] text-text-muted">Athletes view their schedule, upcoming sessions, coach notes, and session history in one place.</p>
-                  </div>
-                  <img
-                    src="/ChatGPT%20Image%20Jun%2026%2C%202026%20at%2011_29_14%20PM.png"
-                    alt="Athlete Portal dashboard"
-                    className="w-full object-cover"
-                  />
-                </div>
-                <div className="overflow-hidden rounded-xl border border-white/[0.08]">
-                  <div className="border-b border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">CEO Dashboard</p>
-                    <p className="mt-0.5 text-[11px] text-text-muted">The owner sees live revenue, net profit, coach payroll, expenses, and athlete sign-ups — all in one command center.</p>
-                  </div>
-                  <img
-                    src="/Screenshot%202026-06-26%20at%2011.28.03%20PM.png"
-                    alt="CEO admin dashboard"
-                    className="w-full object-cover"
-                  />
-                </div>
-              </div>
-            </div>
-
             {/* ── Tab bar ── */}
             <div className="mb-6 flex gap-1 rounded-xl border border-white/[0.07] bg-white/[0.03] p-1">
               {TABS.map((tab) => (
@@ -256,6 +227,47 @@ export default function PortfolioView() {
                           <p className="text-[12px] leading-relaxed text-text-muted">{desc}</p>
                         </div>
                       </motion.div>
+                    ))}
+                  </div>
+                )}
+
+                {/* Preview */}
+                {activeTab === 'Preview' && (
+                  <div className="grid grid-cols-1 gap-4 lg:grid-cols-2">
+                    {[
+                      {
+                        src:   '/ChatGPT%20Image%20Jun%2026%2C%202026%20at%2011_29_14%20PM.png',
+                        alt:   'CEO Dashboard',
+                        title: 'CEO Dashboard',
+                        desc:  'The owner sees live revenue, net profit, coach payroll, expenses, and athlete sign-ups — all in one command center.',
+                        grad:  'from-emerald-500 to-teal-600',
+                        rgb:   '16,185,129',
+                      },
+                      {
+                        src:   '/Screenshot%202026-06-26%20at%2011.28.03%E2%80%AFPM.png',
+                        alt:   'Athlete Portal',
+                        title: 'Athlete Portal',
+                        desc:  'Athletes view their upcoming sessions, coach notes, session history, and communicate directly through the platform.',
+                        grad:  'from-violet-500 to-purple-600',
+                        rgb:   '139,92,246',
+                      },
+                    ].map((item) => (
+                      <div
+                        key={item.title}
+                        className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02]"
+                      >
+                        <img
+                          src={item.src}
+                          alt={item.alt}
+                          className="w-full border-b border-white/[0.06]"
+                        />
+                        <div className="p-4">
+                          <p className={`mb-1 bg-gradient-to-r ${item.grad} bg-clip-text text-[12px] font-bold text-transparent`}>
+                            {item.title}
+                          </p>
+                          <p className="text-[12px] leading-relaxed text-text-muted">{item.desc}</p>
+                        </div>
+                      </div>
                     ))}
                   </div>
                 )}
