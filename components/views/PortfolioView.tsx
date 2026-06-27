@@ -1,11 +1,11 @@
 'use client'
 
-import { Fragment, useRef, useState } from 'react'
-import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
+import { Fragment, useEffect, useRef, useState } from 'react'
+import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import {
   CalendarDays, ChevronRight, Database, DollarSign,
   ExternalLink, GitBranch, Globe, LayoutDashboard,
-  Server, Shield, Terminal, Users, Zap,
+  Server, Shield, Terminal, Users, X, Zap,
 } from 'lucide-react'
 
 const TECH_STACK = [
@@ -87,9 +87,17 @@ type Tab = 'Platform' | 'Preview' | 'Pipeline' | 'Infrastructure' | 'Stack'
 const TABS: Tab[] = ['Platform', 'Preview', 'Pipeline', 'Infrastructure', 'Stack']
 
 export default function PortfolioView() {
-  const [activeTab,     setActiveTab    ] = useState<Tab>('Platform')
+  const [activeTab,      setActiveTab     ] = useState<Tab>('Platform')
   const [hoveredFeature, setHoveredFeature] = useState<number | null>(null)
   const [hoveredInfra,   setHoveredInfra  ] = useState<number | null>(null)
+  const [lightbox,       setLightbox      ] = useState<{ src: string; title: string } | null>(null)
+
+  useEffect(() => {
+    if (!lightbox) return
+    const onKey = (e: KeyboardEvent) => { if (e.key === 'Escape') setLightbox(null) }
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [lightbox])
 
   const cardRef  = useRef<HTMLDivElement>(null)
   const rawX     = useMotionValue(0)
@@ -256,11 +264,21 @@ export default function PortfolioView() {
                         key={item.title}
                         className="overflow-hidden rounded-2xl border border-white/[0.08] bg-white/[0.02]"
                       >
-                        <img
-                          src={item.src}
-                          alt={item.alt}
-                          className="w-full border-b border-white/[0.06]"
-                        />
+                        <div
+                          className="relative cursor-zoom-in overflow-hidden border-b border-white/[0.06] group"
+                          onClick={() => setLightbox({ src: item.src, title: item.title })}
+                        >
+                          <img
+                            src={item.src}
+                            alt={item.alt}
+                            className="w-full transition-transform duration-300 group-hover:scale-[1.02]"
+                          />
+                          <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-200 group-hover:bg-black/20">
+                            <span className="rounded-full border border-white/30 bg-black/40 px-3 py-1 text-[11px] font-medium text-white opacity-0 backdrop-blur-sm transition-opacity duration-200 group-hover:opacity-100">
+                              Click to enlarge
+                            </span>
+                          </div>
+                        </div>
                         <div className="p-4">
                           <p className={`mb-1 bg-gradient-to-r ${item.grad} bg-clip-text text-[12px] font-bold text-transparent`}>
                             {item.title}
@@ -271,7 +289,6 @@ export default function PortfolioView() {
                     ))}
                   </div>
                 )}
-
                 {/* Pipeline */}
                 {activeTab === 'Pipeline' && (
                   <div className="py-4">
@@ -419,6 +436,41 @@ export default function PortfolioView() {
         </div>
 
       </div>
+
+      {/* ── Lightbox ── */}
+      <AnimatePresence>
+        {lightbox && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            className="fixed inset-0 z-50 flex items-center justify-center bg-black/85 p-4 backdrop-blur-sm"
+            onClick={() => setLightbox(null)}
+          >
+            <motion.div
+              initial={{ scale: 0.92, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              exit={{ scale: 0.92, opacity: 0 }}
+              transition={{ duration: 0.2, ease: [0.25, 0.46, 0.45, 0.94] }}
+              className="relative max-h-[90vh] max-w-[90vw] overflow-hidden rounded-2xl border border-white/[0.12] shadow-2xl"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <button
+                onClick={() => setLightbox(null)}
+                className="absolute right-3 top-3 z-10 flex h-8 w-8 items-center justify-center rounded-full bg-black/50 text-white backdrop-blur-sm transition-colors hover:bg-black/70"
+              >
+                <X strokeWidth={2} className="h-4 w-4" />
+              </button>
+              <img
+                src={lightbox.src}
+                alt={lightbox.title}
+                className="max-h-[90vh] max-w-[90vw] object-contain"
+              />
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   )
 }
