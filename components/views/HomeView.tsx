@@ -101,8 +101,9 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
 
           <motion.a
             href="mailto:admin@zarembkasoftware.com"
-            whileHover={{ scale: 1.03, borderColor: 'rgba(255,255,255,0.25)' }}
-            className="w-full sm:w-auto rounded-xl border border-white/[0.1] px-6 md:px-8 py-3 md:py-3.5 text-[13px] md:text-base font-medium text-text-secondary text-center transition-all duration-200 hover:text-text-primary"
+            whileHover={{ scale: 1.03, borderColor: 'rgba(255,255,255,0.25)', color: '#f8fafc' }}
+            style={{ color: '#94a3b8' }}
+            className="w-full sm:w-auto rounded-xl border border-white/[0.1] px-6 md:px-8 py-3 md:py-3.5 text-[13px] md:text-base font-medium text-center transition-all duration-200"
           >
             admin@zarembkasoftware.com
           </motion.a>
