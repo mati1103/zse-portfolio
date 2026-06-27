@@ -180,6 +180,35 @@ export default function PortfolioView() {
 
             <div className="mb-6 h-px w-full bg-gradient-to-r from-white/10 via-white/5 to-transparent" />
 
+            {/* ── Screenshots ── */}
+            <div className="mb-6">
+              <p className="mb-3 text-[11px] font-semibold uppercase tracking-wider text-text-muted">Platform Preview</p>
+              <div className="grid grid-cols-1 gap-3 lg:grid-cols-2">
+                <div className="overflow-hidden rounded-xl border border-white/[0.08]">
+                  <div className="border-b border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">Athlete Portal</p>
+                    <p className="mt-0.5 text-[11px] text-text-muted">Athletes view their schedule, upcoming sessions, coach notes, and session history in one place.</p>
+                  </div>
+                  <img
+                    src="/ChatGPT%20Image%20Jun%2026%2C%202026%20at%2011_29_14%20PM.png"
+                    alt="Athlete Portal dashboard"
+                    className="w-full object-cover"
+                  />
+                </div>
+                <div className="overflow-hidden rounded-xl border border-white/[0.08]">
+                  <div className="border-b border-white/[0.06] bg-white/[0.03] px-3 py-2.5">
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-text-muted">CEO Dashboard</p>
+                    <p className="mt-0.5 text-[11px] text-text-muted">The owner sees live revenue, net profit, coach payroll, expenses, and athlete sign-ups — all in one command center.</p>
+                  </div>
+                  <img
+                    src="/Screenshot%202026-06-26%20at%2011.28.03%20PM.png"
+                    alt="CEO admin dashboard"
+                    className="w-full object-cover"
+                  />
+                </div>
+              </div>
+            </div>
+
             {/* ── Tab bar ── */}
             <div className="mb-6 flex gap-1 rounded-xl border border-white/[0.07] bg-white/[0.03] p-1">
               {TABS.map((tab) => (
