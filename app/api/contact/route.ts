@@ -80,5 +80,19 @@ export async function POST(req: Request) {
     console.error('Confirmation email failed:', confirmError.message)
   }
 
+  // Hand the inquiry to ZENIT so it drafts a reply + coding brief automatically
+  // instead of waiting for someone to paste the email in later. Best-effort —
+  // a failure here shouldn't fail the inquiry submission itself, since the
+  // emails above already went out.
+  const ingestUrl = process.env.ZENIT_INGEST_URL
+  const ingestSecret = process.env.ZENIT_INGEST_SECRET
+  if (ingestUrl && ingestSecret) {
+    fetch(ingestUrl, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json', 'X-Zenit-Ingest-Secret': ingestSecret },
+      body: JSON.stringify({ name, email, phone, company, service, description, timeline }),
+    }).catch((err) => console.error('ZENIT ingest failed:', err.message))
+  }
+
   return NextResponse.json({ success: true })
 }
