@@ -3,7 +3,7 @@
 import { Fragment, useEffect, useRef, useState } from 'react'
 import { AnimatePresence, motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
 import {
-  Bell, CalendarDays, ChevronRight, Cloud, Database, DollarSign,
+  Bell, CalendarDays, ChevronLeft, ChevronRight, Cloud, Database, DollarSign,
   ExternalLink, GitBranch, Globe, LayoutDashboard,
   Server, Shield, Terminal, Users, Video, X, Zap,
 } from 'lucide-react'
@@ -539,8 +539,22 @@ function ProjectCard({ project, onPreview }: { project: Project; onPreview: (ite
   )
 }
 
+const slide = {
+  enter:  (d: number) => ({ x: d > 0 ? 60 : -60, opacity: 0 }),
+  center: { x: 0, opacity: 1 },
+  exit:   (d: number) => ({ x: d < 0 ? 60 : -60, opacity: 0 }),
+}
+
 export default function PortfolioView() {
   const [lightbox, setLightbox] = useState<{ src: string; title: string } | null>(null)
+  const [current,   setCurrent]   = useState(0)
+  const [direction, setDirection] = useState(1)
+
+  const go = (idx: number) => {
+    if (idx === current || idx < 0 || idx >= PROJECTS.length) return
+    setDirection(idx > current ? 1 : -1)
+    setCurrent(idx)
+  }
 
   useEffect(() => {
     if (!lightbox) return
@@ -548,6 +562,8 @@ export default function PortfolioView() {
     window.addEventListener('keydown', onKey)
     return () => window.removeEventListener('keydown', onKey)
   }, [lightbox])
+
+  const project = PROJECTS[current]
 
   return (
     <section id="portfolio" className="relative w-full overflow-x-hidden px-4 py-24 lg:px-10">
@@ -566,15 +582,60 @@ export default function PortfolioView() {
           </div>
         </div>
 
-        {/* ── Project cards ── */}
-        <div className="flex flex-col gap-10">
-          {PROJECTS.map((project) => (
-            <ProjectCard key={project.nameHighlight} project={project} onPreview={setLightbox} />
-          ))}
+        {/* ── Project card — cycles left/right instead of stacking ── */}
+        <div className="relative overflow-hidden">
+          <AnimatePresence mode="wait" custom={direction} initial={false}>
+            <motion.div
+              key={current}
+              custom={direction}
+              variants={slide}
+              initial="enter"
+              animate="center"
+              exit="exit"
+              transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
+            >
+              <ProjectCard project={project} onPreview={setLightbox} />
+            </motion.div>
+          </AnimatePresence>
+        </div>
+
+        {/* ── Prev / next + project pips ── */}
+        <div className="mt-6 flex items-center justify-center gap-4">
+          <button
+            onClick={() => go(current - 1)}
+            disabled={current === 0}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.1] text-text-secondary transition-colors duration-200 hover:text-text-primary disabled:opacity-30"
+          >
+            <ChevronLeft strokeWidth={2} className="h-4 w-4" />
+          </button>
+
+          <div className="flex items-center gap-1.5">
+            {PROJECTS.map((p, i) => (
+              <button
+                key={p.nameHighlight}
+                onClick={() => go(i)}
+                aria-label={`${p.nameHighlight}${p.nameRest}`}
+                className="h-1.5 rounded-full transition-all duration-300 ease-out"
+                style={{
+                  width:      i === current ? 24 : 6,
+                  background: i === current ? 'rgba(139,92,246,1)' : 'rgba(255,255,255,0.18)',
+                  boxShadow:  i === current ? '0 0 8px rgba(139,92,246,0.9)' : 'none',
+                }}
+              />
+            ))}
+          </div>
+
+          <button
+            onClick={() => go(current + 1)}
+            disabled={current === PROJECTS.length - 1}
+            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.1] text-text-secondary transition-colors duration-200 hover:text-text-primary disabled:opacity-30"
+          >
+            <ChevronRight strokeWidth={2} className="h-4 w-4" />
+          </button>
         </div>
 
         {/* ── More coming ── */}
-        <div className="mt-6 flex items-center gap-3 text-sm text-text-muted">
+        <div className="mt-6 flex items-center justify-center gap-3 text-sm text-text-muted">
           {[0, 1, 2].map((i) => (
             <motion.span
               key={i}
