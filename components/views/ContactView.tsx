@@ -3,6 +3,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, Loader2, Mail } from 'lucide-react'
+import Reveal from '@/components/Reveal'
 
 const NEXT_STEPS = [
   { num: '01', text: 'We review your inquiry within 1 business day' },
@@ -49,7 +50,7 @@ export default function ContactView() {
 
   if (status === 'success') {
     return (
-      <div className="flex h-full w-full items-center justify-center">
+      <section id="contact" className="relative flex min-h-screen w-full items-center justify-center px-5">
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
@@ -69,13 +70,13 @@ export default function ContactView() {
             </p>
           </div>
         </motion.div>
-      </div>
+      </section>
     )
   }
 
   return (
-    <div className="flex h-full w-full overflow-y-auto md:items-center md:justify-center px-5 py-6 md:px-6 md:overflow-hidden md:pb-6">
-      <div className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
+    <section id="contact" className="relative flex min-h-screen w-full items-center justify-center px-5 py-24 md:px-6">
+      <Reveal className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
 
         {/* ── Left: info panel (desktop only) ── */}
         <div className="hidden md:flex flex-col justify-center gap-7">
@@ -239,7 +240,7 @@ export default function ContactView() {
             </form>
           </div>
         </div>
-      </div>
-    </div>
+      </Reveal>
+    </section>
   )
 }

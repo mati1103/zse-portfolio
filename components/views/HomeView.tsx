@@ -3,6 +3,8 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Code2, Crosshair, DollarSign } from 'lucide-react'
 import type { View } from '@/app/page'
+import HeroVideoBackground from '@/components/HeroVideoBackground'
+import Reveal from '@/components/Reveal'
 
 interface HomeViewProps {
   onNavigate: (view: View) => void
@@ -34,8 +36,9 @@ const STATS = [
 
 export default function HomeView({ onNavigate }: HomeViewProps) {
   return (
-    <div className="flex h-full w-full items-center justify-center overflow-y-auto px-5 py-6 md:px-6 md:py-0">
-      <div className="flex w-full max-w-2xl flex-col items-center">
+    <section id="home" className="relative flex min-h-screen w-full items-center justify-center overflow-hidden px-5 py-24 md:px-6">
+      <HeroVideoBackground />
+      <Reveal className="relative z-10 flex w-full max-w-2xl flex-col items-center">
         {/* Status badge */}
         <div className="mb-4 md:mb-6">
           <div className="flex items-center gap-2 rounded-full border border-accent-violet/30 bg-accent-violet/[0.08] px-4 py-1.5 md:gap-2.5 md:px-5 md:py-2 backdrop-blur-sm">
@@ -108,7 +111,7 @@ export default function HomeView({ onNavigate }: HomeViewProps) {
             admin@zarembkasoftware.com
           </motion.a>
         </div>
-      </div>
-    </div>
+      </Reveal>
+    </section>
   )
 }

@@ -7,6 +7,7 @@ import {
   ExternalLink, GitBranch, Globe, LayoutDashboard,
   Server, Shield, Terminal, Users, Video, X, Zap,
 } from 'lucide-react'
+import Reveal from '@/components/Reveal'
 
 type IconType = typeof Database
 
@@ -548,8 +549,8 @@ export default function PortfolioView() {
   }, [lightbox])
 
   return (
-    <div className="h-full overflow-y-auto overflow-x-hidden p-4 lg:p-10">
-      <div className="mx-auto max-w-5xl">
+    <section id="portfolio" className="relative w-full overflow-x-hidden px-4 py-24 lg:px-10">
+      <Reveal className="mx-auto max-w-5xl">
 
         {/* ── Section header ── */}
         <div className="mb-8 flex items-center justify-between">
@@ -583,7 +584,7 @@ export default function PortfolioView() {
           More projects coming soon
         </div>
 
-      </div>
+      </Reveal>
 
       {/* ── Lightbox ── */}
       <AnimatePresence>
@@ -619,6 +620,6 @@ export default function PortfolioView() {
           </motion.div>
         )}
       </AnimatePresence>
-    </div>
+    </section>
   )
 }

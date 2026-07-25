@@ -3,6 +3,7 @@
 import { motion } from 'framer-motion'
 import { ArrowRight, Check, Globe, Database, ShieldCheck } from 'lucide-react'
 import type { View } from '@/app/page'
+import Reveal from '@/components/Reveal'
 
 interface PricingViewProps {
   onNavigate: (view: View) => void
@@ -71,8 +72,8 @@ const MAINTENANCE = [
 
 export default function PricingView({ onNavigate }: PricingViewProps) {
   return (
-    <div className="flex h-full w-full overflow-y-auto md:items-center md:justify-center px-4 py-6 md:overflow-hidden md:pb-6">
-      <div className="w-full max-w-4xl">
+    <section id="pricing" className="relative flex min-h-screen w-full items-center justify-center px-4 py-24 md:px-6">
+      <Reveal className="w-full max-w-4xl">
         {/* ── Header ── */}
         <div className="mb-5 text-center md:mb-6">
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.22em] text-text-muted">
@@ -210,7 +211,7 @@ export default function PricingView({ onNavigate }: PricingViewProps) {
             ))}
           </div>
         </div>
-      </div>
-    </div>
+      </Reveal>
+    </section>
   )
 }

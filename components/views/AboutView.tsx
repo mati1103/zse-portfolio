@@ -1,9 +1,10 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import type { View } from '@/app/page'
+import Reveal from '@/components/Reveal'
 
 interface AboutViewProps {
   onNavigate: (view: View) => void
@@ -67,19 +68,10 @@ const SECTIONS = [
 export default function AboutView({ onNavigate }: AboutViewProps) {
   const [current, setCurrent] = useState(0)
 
-  useEffect(() => {
-    const onKey = (e: KeyboardEvent) => {
-      if (e.key === 'ArrowUp')   setCurrent(c => Math.max(c - 1, 0))
-      if (e.key === 'ArrowDown') setCurrent(c => Math.min(c + 1, SECTIONS.length - 1))
-    }
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [])
-
   const s = SECTIONS[current]
 
   return (
-    <div className="relative h-full w-full overflow-x-hidden overflow-y-auto md:overflow-hidden">
+    <section id="about" className="relative min-h-screen w-full overflow-x-hidden pt-16">
 
       {/* Ambient wash */}
       <div
@@ -90,7 +82,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
         }}
       />
 
-      <div className="relative flex h-full flex-col md:flex-row md:px-10">
+      <Reveal className="relative flex min-h-screen flex-col md:flex-row md:px-10">
 
         {/* ── Mobile: horizontal tab bar ── */}
         <div className="flex md:hidden gap-1.5 overflow-x-auto px-4 pt-3 pb-2 shrink-0">
@@ -221,7 +213,7 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
             </motion.div>
           </AnimatePresence>
         </div>
-      </div>
-    </div>
+      </Reveal>
+    </section>
   )
 }

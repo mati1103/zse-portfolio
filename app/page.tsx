@@ -1,8 +1,7 @@
 'use client'
 
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import HUDNav from '@/components/HUDNav'
-import HeroVideoBackground from '@/components/HeroVideoBackground'
 import HomeView from '@/components/views/HomeView'
 import AboutView from '@/components/views/AboutView'
 import ProcessView from '@/components/views/ProcessView'
@@ -12,21 +11,42 @@ import ContactView from '@/components/views/ContactView'
 
 export type View = 'home' | 'process' | 'pricing' | 'portfolio' | 'contact' | 'about'
 
+const SECTION_ORDER: View[] = ['home', 'process', 'pricing', 'portfolio', 'contact', 'about']
+
 export default function Page() {
   const [activeView, setActiveView] = useState<View>('home')
 
   const navigateTo = (view: View) => {
-    setActiveView(view)
+    document.getElementById(view)?.scrollIntoView({ behavior: 'smooth', block: 'start' })
   }
 
+  // Scroll-spy: highlights the nav pill for whichever section currently
+  // occupies the vertical center of the viewport, instead of a click-driven
+  // state swap now that every section lives on one continuously scrolling page.
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      (entries) => {
+        const mostVisible = entries
+          .filter((entry) => entry.isIntersecting)
+          .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
+        if (mostVisible) setActiveView(mostVisible.target.id as View)
+      },
+      { rootMargin: '-45% 0px -45% 0px', threshold: [0, 0.25, 0.5, 0.75, 1] }
+    )
+
+    SECTION_ORDER.forEach((id) => {
+      const el = document.getElementById(id)
+      if (el) observer.observe(el)
+    })
+
+    return () => observer.disconnect()
+  }, [])
+
   return (
-    <div className="relative w-screen h-screen overflow-hidden bg-base">
+    <div className="relative w-full bg-base">
 
-      {/* ── Hero video backdrop (home only) ── */}
-      {activeView === 'home' && <HeroVideoBackground />}
-
-      {/* ── Animated gradient orbs ── */}
-      <div className="pointer-events-none absolute inset-0 overflow-hidden">
+      {/* ── Animated gradient orbs — fixed so they stay put as the page scrolls ── */}
+      <div className="pointer-events-none fixed inset-0 -z-10 overflow-hidden">
         {/* Top-left violet orb */}
         <div className="absolute -top-48 -left-24 h-[600px] w-[600px] rounded-full bg-accent-violet/[0.18] blur-[130px] animate-drift" />
         {/* Top-right blue orb */}
@@ -39,7 +59,7 @@ export default function Page() {
 
       {/* ── Subtle dot grid ── */}
       <div
-        className="pointer-events-none absolute inset-0"
+        className="pointer-events-none fixed inset-0 -z-10"
         style={{
           backgroundImage: 'radial-gradient(rgba(255,255,255,0.055) 1px, transparent 1px)',
           backgroundSize: '32px 32px',
@@ -49,16 +69,14 @@ export default function Page() {
       {/* ── Nav ── */}
       <HUDNav activeView={activeView} onNavigate={navigateTo} />
 
-      {/* ── Content ── */}
-      <main className="relative h-full w-full overflow-hidden">
-        <div className="absolute inset-0 pt-16 overflow-hidden">
-            {activeView === 'home'      && <HomeView      onNavigate={navigateTo} />}
-            {activeView === 'process'   && <ProcessView   onNavigate={navigateTo} />}
-            {activeView === 'pricing'   && <PricingView   onNavigate={navigateTo} />}
-            {activeView === 'portfolio' && <PortfolioView />}
-            {activeView === 'contact'   && <ContactView />}
-            {activeView === 'about'     && <AboutView onNavigate={navigateTo} />}
-          </div>
+      {/* ── Content — every section stacked on one scrollable page ── */}
+      <main className="relative w-full">
+        <HomeView      onNavigate={navigateTo} />
+        <ProcessView   onNavigate={navigateTo} />
+        <PricingView   onNavigate={navigateTo} />
+        <PortfolioView />
+        <ContactView />
+        <AboutView     onNavigate={navigateTo} />
       </main>
     </div>
   )

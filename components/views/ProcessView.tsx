@@ -7,6 +7,7 @@ import {
   Code2, RefreshCw, Rocket, Shield, Repeat, ArrowRight,
 } from 'lucide-react'
 import type { View } from '@/app/page'
+import Reveal from '@/components/Reveal'
 
 interface ProcessViewProps {
   onNavigate: (view: View) => void
@@ -175,7 +176,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
   const s = STEPS[current]
 
   return (
-    <div className="relative h-full w-full overflow-hidden">
+    <section id="process" className="relative min-h-screen w-full overflow-hidden pt-16">
 
       {/* ── Ambient color wash ── */}
       <div
@@ -187,7 +188,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
       />
 
       {/* ── Card ── */}
-      <div className="absolute inset-0 flex items-center justify-center px-4 pb-8">
+      <Reveal className="absolute inset-0 flex items-center justify-center px-4 pb-8">
         <AnimatePresence mode="wait" custom={direction} initial={false}>
           <motion.div
             key={current}
@@ -346,7 +347,7 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
             </div>
           </motion.div>
         </AnimatePresence>
-      </div>
+      </Reveal>
 
       {/* ── Progress pills ── */}
       <div className="absolute bottom-2 md:bottom-4 left-0 right-0 flex items-center justify-center gap-1.5">
@@ -364,6 +365,6 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
           />
         ))}
       </div>
-    </div>
+    </section>
   )
 }
