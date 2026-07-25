@@ -24,7 +24,13 @@ export default function HeroVideoBackground() {
       </video>
       {/* Dark wash so text stays legible over the footage */}
       <div className="absolute inset-0 bg-base/70" />
-      <div className="absolute inset-0 bg-gradient-to-b from-base/20 via-transparent to-base" />
+      {/* Fixed-pixel bottom fade — dissolves into the same dark base that
+          Process's own top fade starts from, so the seam between sections
+          blends instead of cutting hard between two different clips. */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-[180px]"
+        style={{ background: 'linear-gradient(to top, #07071a, transparent)' }}
+      />
     </div>
   )
 }

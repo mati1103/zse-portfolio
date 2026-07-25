@@ -8,6 +8,7 @@ import {
   Server, Shield, Terminal, Users, Video, X, Zap,
 } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import SectionVideoBackground from '@/components/SectionVideoBackground'
 
 type IconType = typeof Database
 
@@ -550,7 +551,8 @@ export default function PortfolioView() {
 
   return (
     <section id="portfolio" className="relative w-full overflow-x-hidden px-4 py-24 lg:px-10">
-      <Reveal className="mx-auto max-w-5xl">
+      <SectionVideoBackground src="/19870630-uhd_3840_2160_25fps.mp4" />
+      <Reveal className="relative mx-auto max-w-5xl">
 
         {/* ── Section header ── */}
         <div className="mb-8 flex items-center justify-between">

@@ -5,6 +5,7 @@ import { AnimatePresence, motion } from 'framer-motion'
 import { ArrowRight } from 'lucide-react'
 import type { View } from '@/app/page'
 import Reveal from '@/components/Reveal'
+import SectionVideoBackground from '@/components/SectionVideoBackground'
 
 interface AboutViewProps {
   onNavigate: (view: View) => void
@@ -72,6 +73,8 @@ export default function AboutView({ onNavigate }: AboutViewProps) {
 
   return (
     <section id="about" className="relative min-h-screen w-full overflow-x-hidden pt-16">
+
+      <SectionVideoBackground src="/12085630_3840_2160_25fps.mp4" />
 
       {/* Ambient wash */}
       <div

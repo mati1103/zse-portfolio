@@ -8,6 +8,7 @@ import {
 } from 'lucide-react'
 import type { View } from '@/app/page'
 import Reveal from '@/components/Reveal'
+import SectionVideoBackground from '@/components/SectionVideoBackground'
 
 interface ProcessViewProps {
   onNavigate: (view: View) => void
@@ -177,6 +178,8 @@ export default function ProcessView({ onNavigate }: ProcessViewProps) {
 
   return (
     <section id="process" className="relative min-h-screen w-full overflow-hidden pt-16">
+
+      <SectionVideoBackground src="/14297688_3840_2160_24fps.mp4" />
 
       {/* ── Ambient color wash ── */}
       <div

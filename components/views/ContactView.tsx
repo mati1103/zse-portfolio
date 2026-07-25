@@ -4,6 +4,7 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Send, CheckCircle, Loader2, Mail } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import SectionVideoBackground from '@/components/SectionVideoBackground'
 
 const NEXT_STEPS = [
   { num: '01', text: 'We review your inquiry within 1 business day' },
@@ -51,11 +52,12 @@ export default function ContactView() {
   if (status === 'success') {
     return (
       <section id="contact" className="relative flex min-h-screen w-full items-center justify-center px-5">
+        <SectionVideoBackground src="/14734891_3840_2160_30fps.mp4" />
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.4, ease: [0.25, 0.46, 0.45, 0.94] }}
-          className="flex flex-col items-center gap-5 text-center"
+          className="relative flex flex-col items-center gap-5 text-center"
         >
           <div
             className="flex h-20 w-20 items-center justify-center rounded-3xl bg-emerald-500/10"
@@ -76,7 +78,8 @@ export default function ContactView() {
 
   return (
     <section id="contact" className="relative flex min-h-screen w-full items-center justify-center px-5 py-24 md:px-6">
-      <Reveal className="grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
+      <SectionVideoBackground src="/14734891_3840_2160_30fps.mp4" />
+      <Reveal className="relative grid w-full max-w-6xl grid-cols-1 gap-8 md:grid-cols-[1fr_1.6fr] md:gap-12">
 
         {/* ── Left: info panel (desktop only) ── */}
         <div className="hidden md:flex flex-col justify-center gap-7">
