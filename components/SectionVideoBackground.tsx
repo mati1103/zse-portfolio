@@ -8,7 +8,7 @@ interface SectionVideoBackgroundProps {
   playbackRate?: number
 }
 
-export default function SectionVideoBackground({ src, opacity = 0.12, playbackRate = 0.75 }: SectionVideoBackgroundProps) {
+export default function SectionVideoBackground({ src, opacity = 0.38, playbackRate = 0.75 }: SectionVideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
@@ -30,7 +30,7 @@ export default function SectionVideoBackground({ src, opacity = 0.12, playbackRa
         <source src={src} type="video/mp4" />
       </video>
       {/* Uniform dark wash so section content stays legible over the footage */}
-      <div className="absolute inset-0 bg-base/80" />
+      <div className="absolute inset-0 bg-base/65" />
       {/* Fixed-pixel edge fades (not a percentage of the section) — blend this
           section's footage into the shared dark base at the seam with the
           section above/below, so scrolling between sections dissolves through
