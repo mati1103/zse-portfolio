@@ -29,12 +29,13 @@ export default function HUDNav({ activeView, onNavigate }: NavProps) {
   return (
     <header className="fixed inset-x-0 top-0 z-50 pointer-events-none">
 
-      {/* ── Brand – top left ── */}
+      {/* ── Brand – top left (mobile: home only, desktop: always) ── */}
       <motion.div
         initial={{ opacity: 0, x: -16 }}
         animate={{ opacity: 1, x: 0 }}
         transition={{ duration: 0.5, ease: [0.25, 0.46, 0.45, 0.94] }}
-        className="fixed flex items-center pointer-events-none" style={{ top: '-10px', left: '12px' }}
+        className={`fixed items-center pointer-events-none ${activeView === 'home' ? 'flex' : 'hidden md:flex'}`}
+        style={{ top: '-10px', left: '12px' }}
       >
         <div className="flex flex-col items-center">
           <img

@@ -12,7 +12,7 @@ export default function HeroVideoBackground() {
   }, [])
 
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden hidden md:block">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div style={{ opacity: faded ? 0 : 1, transition: `opacity ${fadeMs}ms ease` }}>
         <video
           ref={videoRef}

@@ -18,7 +18,7 @@ export default function SectionVideoBackground({ src, opacity = 0.38, playbackRa
   }, [playbackRate])
 
   return (
-    <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden">
       <div style={{ opacity: faded ? 0 : 1, transition: `opacity ${fadeMs}ms ease` }}>
         <video
           ref={videoRef}
