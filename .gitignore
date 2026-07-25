@@ -14,3 +14,6 @@ out/
 .DS_Store
 *.pem
 npm-debug.log*
+
+# oversized source video — exceeds GitHub's 100MB push limit, compress before committing
+public/15377744_1920_1080_24fps.mp4

@@ -2,6 +2,7 @@
 
 import { useState } from 'react'
 import HUDNav from '@/components/HUDNav'
+import HeroVideoBackground from '@/components/HeroVideoBackground'
 import HomeView from '@/components/views/HomeView'
 import AboutView from '@/components/views/AboutView'
 import ProcessView from '@/components/views/ProcessView'
@@ -20,6 +21,9 @@ export default function Page() {
 
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-base">
+
+      {/* ── Hero video backdrop (home only) ── */}
+      {activeView === 'home' && <HeroVideoBackground />}
 
       {/* ── Animated gradient orbs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
