@@ -6,7 +6,7 @@ export default function HeroVideoBackground() {
   const videoRef = useRef<HTMLVideoElement>(null)
 
   useEffect(() => {
-    if (videoRef.current) videoRef.current.playbackRate = 0.75
+    if (videoRef.current) videoRef.current.playbackRate = 1
   }, [])
 
   return (
@@ -20,7 +20,7 @@ export default function HeroVideoBackground() {
         preload="auto"
         className="absolute inset-0 h-full w-full object-cover opacity-40"
       >
-        <source src="/12954605-hd_1920_1080_24fps.mp4" type="video/mp4" />
+        <source src="/7140928-uhd_3840_2160_24fps.mp4" type="video/mp4" />
       </video>
       {/* Dark wash so text stays legible over the footage */}
       <div className="absolute inset-0 bg-base/70" />
