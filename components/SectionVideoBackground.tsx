@@ -1,6 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
+import { useLoopFade } from '@/components/useLoopFade'
 
 interface SectionVideoBackgroundProps {
   src: string
@@ -10,6 +11,7 @@ interface SectionVideoBackgroundProps {
 
 export default function SectionVideoBackground({ src, opacity = 0.38, playbackRate = 0.75 }: SectionVideoBackgroundProps) {
   const videoRef = useRef<HTMLVideoElement>(null)
+  const { faded, fadeMs } = useLoopFade(videoRef)
 
   useEffect(() => {
     if (videoRef.current) videoRef.current.playbackRate = playbackRate
@@ -17,18 +19,19 @@ export default function SectionVideoBackground({ src, opacity = 0.38, playbackRa
 
   return (
     <div className="pointer-events-none absolute inset-0 hidden overflow-hidden md:block">
-      <video
-        ref={videoRef}
-        autoPlay
-        muted
-        loop
-        playsInline
-        preload="auto"
-        className="absolute inset-0 h-full w-full object-cover"
-        style={{ opacity }}
-      >
-        <source src={src} type="video/mp4" />
-      </video>
+      <div style={{ opacity: faded ? 0 : 1, transition: `opacity ${fadeMs}ms ease` }}>
+        <video
+          ref={videoRef}
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          className="absolute inset-0 h-full w-full object-cover"
+          style={{ opacity }}
+        >
+          <source src={src} type="video/mp4" />
+        </video>
+      </div>
       {/* Uniform dark wash so section content stays legible over the footage */}
       <div className="absolute inset-0 bg-base/65" />
       {/* Fixed-pixel edge fades (not a percentage of the section) — blend this
