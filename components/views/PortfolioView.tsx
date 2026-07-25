@@ -600,14 +600,18 @@ export default function PortfolioView() {
         </div>
 
         {/* ── Prev / next + project pips ── */}
-        <div className="mt-6 flex items-center justify-center gap-4">
-          <button
+        <div className="mt-8 flex items-center justify-center gap-5">
+          <motion.button
             onClick={() => go(current - 1)}
             disabled={current === 0}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.1] text-text-secondary transition-colors duration-200 hover:text-text-primary disabled:opacity-30"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.94 }}
+            aria-label="Previous project"
+            className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-accent-violet to-accent-blue text-white transition-opacity duration-200 disabled:opacity-25 disabled:pointer-events-none"
+            style={{ boxShadow: '0 0 24px rgba(139,92,246,0.5), 0 6px 18px rgba(59,130,246,0.25)' }}
           >
-            <ChevronLeft strokeWidth={2} className="h-4 w-4" />
-          </button>
+            <ChevronLeft strokeWidth={2.75} className="h-6 w-6 transition-transform duration-200 group-hover:-translate-x-0.5" />
+          </motion.button>
 
           <div className="flex items-center gap-1.5">
             {PROJECTS.map((p, i) => (
@@ -625,13 +629,17 @@ export default function PortfolioView() {
             ))}
           </div>
 
-          <button
+          <motion.button
             onClick={() => go(current + 1)}
             disabled={current === PROJECTS.length - 1}
-            className="flex h-9 w-9 shrink-0 items-center justify-center rounded-full border border-white/[0.1] text-text-secondary transition-colors duration-200 hover:text-text-primary disabled:opacity-30"
+            whileHover={{ scale: 1.08 }}
+            whileTap={{ scale: 0.94 }}
+            aria-label="Next project"
+            className="group flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-gradient-to-r from-accent-violet to-accent-blue text-white transition-opacity duration-200 disabled:opacity-25 disabled:pointer-events-none"
+            style={{ boxShadow: '0 0 24px rgba(139,92,246,0.5), 0 6px 18px rgba(59,130,246,0.25)' }}
           >
-            <ChevronRight strokeWidth={2} className="h-4 w-4" />
-          </button>
+            <ChevronRight strokeWidth={2.75} className="h-6 w-6 transition-transform duration-200 group-hover:translate-x-0.5" />
+          </motion.button>
         </div>
 
         {/* ── More coming ── */}
