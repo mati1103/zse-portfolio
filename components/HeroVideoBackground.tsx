@@ -1,7 +1,18 @@
+'use client'
+
+import { useEffect, useRef } from 'react'
+
 export default function HeroVideoBackground() {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    if (videoRef.current) videoRef.current.playbackRate = 0.5
+  }, [])
+
   return (
-    <div className="pointer-events-none absolute inset-0 overflow-hidden">
+    <div className="pointer-events-none absolute inset-0 overflow-hidden hidden md:block">
       <video
+        ref={videoRef}
         autoPlay
         muted
         loop
