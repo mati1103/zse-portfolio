@@ -22,8 +22,8 @@ export default function Page() {
   return (
     <div className="relative w-screen h-screen overflow-hidden bg-base">
 
-      {/* ── Hero video backdrop ── */}
-      <HeroVideoBackground />
+      {/* ── Hero video backdrop (home only) ── */}
+      {activeView === 'home' && <HeroVideoBackground />}
 
       {/* ── Animated gradient orbs ── */}
       <div className="pointer-events-none absolute inset-0 overflow-hidden">
