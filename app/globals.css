@@ -6,88 +6,55 @@
 html, body {
   width: 100%;
   overflow-x: hidden;
-  background-color: #07071a;
+  background-color: #FAF9F6;
 }
 
-/* Eliminate 300ms tap delay and improve touch responsiveness */
 *, *::before, *::after {
   touch-action: manipulation;
 }
-/* Re-allow scrolling in scroll containers */
 .overflow-y-auto, .overflow-y-scroll {
   touch-action: pan-y;
 }
 
-::-webkit-scrollbar { width: 4px; }
+::selection {
+  background: rgba(49, 87, 213, 0.16);
+  color: #171817;
+}
+
+::-webkit-scrollbar { width: 8px; }
 ::-webkit-scrollbar-track { background: transparent; }
 ::-webkit-scrollbar-thumb {
-  background: rgba(139, 92, 246, 0.35);
+  background: rgba(23, 24, 23, 0.18);
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(139, 92, 246, 0.6);
+  background: rgba(23, 24, 23, 0.32);
 }
 
-/* ─── Component utilities ────────────────────────────────────── */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
 @layer components {
-  .glass {
-    background: rgba(255, 255, 255, 0.04);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border: 1px solid rgba(255, 255, 255, 0.08);
+  /* Light-section card: soft white surface, hairline stone border, quiet shadow. */
+  .card-surface {
+    background: #FAF9F6;
+    border: 1px solid #D9D5CC;
+    box-shadow: 0 1px 2px rgba(23,24,23,0.04), 0 12px 28px rgba(23,24,23,0.05);
   }
 
-  .glass-strong {
-    background: rgba(255, 255, 255, 0.07);
-    backdrop-filter: blur(28px);
-    -webkit-backdrop-filter: blur(28px);
-    border: 1px solid rgba(255, 255, 255, 0.12);
+  /* Dark-section card: subtle lift off the charcoal background, no blur. */
+  .card-surface-dark {
+    background: rgba(255,255,255,0.045);
+    border: 1px solid rgba(255,255,255,0.1);
   }
 
-  .glass-card {
-    background: rgba(255, 255, 255, 0.035);
-    backdrop-filter: blur(16px);
-    -webkit-backdrop-filter: blur(16px);
-    border: 1px solid rgba(255, 255, 255, 0.07);
-    border-radius: 1rem;
-  }
-}
-
-/* ─── Gradient utilities ─────────────────────────────────────── */
-@layer utilities {
-  .gradient-text {
-    background: linear-gradient(135deg, #a78bfa 0%, #60a5fa 55%, #f472b6 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-text-violet {
-    background: linear-gradient(135deg, #c4b5fd 0%, #818cf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  .gradient-border-violet {
-    position: relative;
-  }
-  .gradient-border-violet::before {
-    content: '';
-    position: absolute;
-    inset: 0;
-    border-radius: inherit;
-    padding: 1px;
-    background: linear-gradient(135deg, rgba(139,92,246,0.6), rgba(59,130,246,0.4));
-    -webkit-mask:
-      linear-gradient(#fff 0 0) content-box,
-      linear-gradient(#fff 0 0);
-    -webkit-mask-composite: xor;
-    mask-composite: exclude;
-    pointer-events: none;
-  }
-
-  /* Shimmer sweep for buttons/cards */
+  /* Understated hover sweep for solid buttons — no color, just a light pass. */
   .shimmer-sweep {
     position: relative;
     overflow: hidden;
@@ -96,18 +63,16 @@ html, body {
     content: '';
     position: absolute;
     inset: 0;
-    background: linear-gradient(
-      90deg,
-      transparent 0%,
-      rgba(255,255,255,0.07) 50%,
-      transparent 100%
-    );
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.14) 50%, transparent 100%);
     background-size: 200% 100%;
-    animation: shimmer 2.5s linear infinite;
+    transform: translateX(-100%);
+    transition: transform 0.7s ease;
   }
+  .shimmer-sweep:hover::after {
+    transform: translateX(100%);
+  }
+}
 
-  /* Glow shadows */
-  .glow-violet { box-shadow: 0 0 30px rgba(139,92,246,0.35), 0 0 80px rgba(139,92,246,0.12); }
-  .glow-blue   { box-shadow: 0 0 30px rgba(59,130,246,0.35),  0 0 80px rgba(59,130,246,0.12); }
-  .glow-pink   { box-shadow: 0 0 30px rgba(244,114,182,0.35), 0 0 80px rgba(244,114,182,0.12); }
+@layer utilities {
+  .text-balance { text-wrap: balance; }
 }
