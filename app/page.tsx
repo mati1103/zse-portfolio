@@ -18,7 +18,7 @@ export default function HomePage() {
           alt="A calm, well-designed workspace displaying a custom-built website"
           fill
           priority
-          className="object-cover"
+          className="object-cover object-[68%_center] md:object-center"
         />
         <div
           className="absolute inset-0"
