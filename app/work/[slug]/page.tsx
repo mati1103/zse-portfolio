@@ -4,6 +4,7 @@ import Link from 'next/link'
 import { notFound } from 'next/navigation'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Reveal from '@/components/Reveal'
+import ProductVisuals from '@/components/ProductVisuals'
 import CapabilityList from '@/components/CapabilityList'
 import PipelineRail from '@/components/PipelineRail'
 import TechnicalDetails from '@/components/TechnicalDetails'
@@ -119,28 +120,7 @@ export default async function CaseStudyPage({ params }: Props) {
           <Reveal>
             <p className="mb-8 text-[13px] font-medium uppercase tracking-[0.18em] text-muted">Product visuals</p>
           </Reveal>
-          <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
-            {project.previews.map((preview, i) => (
-              <Reveal key={preview.title} delay={i * 0.06}>
-                <div className="overflow-hidden rounded-2xl border border-border-neutral">
-                  <div className="relative h-[360px] w-full bg-ivory">
-                    <Image
-                      src={preview.src}
-                      alt={preview.alt}
-                      fill
-                      sizes="(min-width: 768px) 45vw, 90vw"
-                      loading="lazy"
-                      className="object-contain"
-                    />
-                  </div>
-                  <div className="border-t border-border-neutral p-5">
-                    <p className="text-[14px] font-medium text-ink">{preview.title}</p>
-                    <p className="mt-1 text-[13px] leading-relaxed text-muted">{preview.desc}</p>
-                  </div>
-                </div>
-              </Reveal>
-            ))}
-          </div>
+          <ProductVisuals previews={project.previews} />
         </div>
       </section>
 

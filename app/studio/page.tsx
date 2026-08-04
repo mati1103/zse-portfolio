@@ -1,4 +1,7 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
+import Link from 'next/link'
+import { Linkedin } from 'lucide-react'
 import Reveal from '@/components/Reveal'
 import PageHero from '@/components/PageHero'
 import CinematicCTA from '@/components/CinematicCTA'
@@ -54,6 +57,56 @@ export default function StudioPage() {
         title="Small by design, not by accident."
         description="Zarembka Software Engineering exists because most studios grow past the point where the person you spoke to on the first call is still the person building your project. This one stays deliberately small so that never happens."
       />
+
+      <section className="bg-ivory py-24 md:py-32">
+        <div className="mx-auto max-w-6xl px-5 md:px-8">
+          <Reveal>
+            <div className="grid grid-cols-1 items-center gap-12 md:grid-cols-[340px_1fr] md:gap-16">
+              <div className="relative mx-auto aspect-[4/5] w-full max-w-[320px] overflow-hidden rounded-sm md:mx-0">
+                <Image
+                  src="/matias-zarembka.png"
+                  alt="Matias Zarembka, founder of Zarembka Software Engineering"
+                  fill
+                  sizes="(min-width: 768px) 340px, 320px"
+                  className="object-cover"
+                />
+              </div>
+              <div>
+                <p className="text-[13px] font-medium uppercase tracking-[0.22em] text-muted">
+                  About Me
+                </p>
+                <h2 className="mt-4 font-display text-[28px] leading-[1.25] text-ink md:text-[36px]">
+                  Matias Zarembka
+                </h2>
+                <div className="mt-5 space-y-4">
+                  <p className="text-[16px] leading-[1.8] text-muted">
+                    I&rsquo;m currently a sophomore at the University of Maryland, pursuing a
+                    degree in Finance with a minor in Economics. Alongside my studies, I&rsquo;ve
+                    spent countless hours learning and building — websites, applications,
+                    trading bots, and trading algorithms among them — turning that curiosity
+                    into a genuine command of the craft.
+                  </p>
+                  <p className="text-[16px] leading-[1.8] text-muted">
+                    That work became Zarembka Software Engineering LLC, a studio I founded and
+                    run myself. Every project I take on gets my full attention, and I&rsquo;m
+                    focused on growing a client base built on the same standard: thoughtful,
+                    hand-built software and a direct line to the person building it.
+                  </p>
+                </div>
+                <Link
+                  href="https://www.linkedin.com/in/matiaszarembka/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex items-center gap-2 text-[14px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
+                >
+                  <Linkedin className="h-4 w-4" strokeWidth={1.75} />
+                  Connect on LinkedIn
+                </Link>
+              </div>
+            </div>
+          </Reveal>
+        </div>
+      </section>
 
       <section className="bg-soft-white">
         <div className="mx-auto max-w-4xl divide-y divide-border-neutral px-5 md:px-8">

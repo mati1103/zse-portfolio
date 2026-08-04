@@ -9,6 +9,7 @@ interface PageHeroProps {
   title: string
   description: string
   minHeight?: string
+  maxWidth?: string
   children?: ReactNode
 }
 
@@ -19,6 +20,7 @@ export default function PageHero({
   title,
   description,
   minHeight = '62vh',
+  maxWidth = 'max-w-6xl',
   children,
 }: PageHeroProps) {
   return (
@@ -46,7 +48,7 @@ export default function PageHero({
         style={{ background: 'linear-gradient(to right, rgba(23,24,23,0.5) 0%, transparent 55%)' }}
       />
 
-      <div className="relative z-10 mx-auto w-full max-w-6xl px-5 pb-16 pt-32 md:px-8 md:pb-20">
+      <div className={`relative z-10 mx-auto w-full ${maxWidth} px-5 pb-16 pt-32 md:px-8 md:pb-20`}>
         <Reveal>
           {children}
           {eyebrow && (

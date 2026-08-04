@@ -3,8 +3,6 @@
 import { motion } from 'framer-motion'
 import type { ReactNode } from 'react'
 
-const ease = [0.22, 1, 0.36, 1] as const
-
 interface RevealProps {
   children: ReactNode
   delay?: number
@@ -14,10 +12,10 @@ interface RevealProps {
 export default function Reveal({ children, delay = 0, className }: RevealProps) {
   return (
     <motion.div
-      initial={{ opacity: 0, y: 40 }}
+      initial={{ opacity: 0, y: 12 }}
       whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: '-120px 0px -120px 0px' }}
-      transition={{ duration: 0.65, ease, delay }}
+      viewport={{ once: true, amount: 0, margin: '0px 0px -10% 0px' }}
+      transition={{ duration: 0.35, ease: 'easeOut', delay }}
       className={className}
     >
       {children}
