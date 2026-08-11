@@ -105,8 +105,8 @@ export const PROJECTS: Project[] = [
       },
       {
         Icon: DollarSign,
-        label: 'Venmo Checkout',
-        desc: 'Athletes are redirected to Venmo to complete payment for packages, camps, and drop-ins. Keeps the flow simple and avoids card processing fees.',
+        label: 'Stripe Checkout',
+        desc: 'Athletes pay for packages, camps, and drop-ins through Stripe Checkout. Webhook-driven, API-key-authenticated integration keeps payment status in sync with bookings automatically.',
       },
       {
         Icon: Zap,
@@ -119,7 +119,7 @@ export const PROJECTS: Project[] = [
         desc: "futureprosoccer.com registered via Squarespace. DNS A and CNAME records point to Vercel's edge network for fast global delivery.",
       },
     ],
-    techStack: ['Next.js', 'TypeScript', 'Supabase', 'Prisma ORM', 'Tailwind CSS', 'NextAuth.js', 'Vercel'],
+    techStack: ['Next.js', 'TypeScript', 'Supabase', 'Prisma ORM', 'Tailwind CSS', 'NextAuth.js', 'Stripe', 'Vercel'],
     overview:
       'FuturePro Soccer trains athletes and coaches across a network of elite soccer programs. Before this build, session bookings, coach schedules, and business reporting were handled across a patchwork of spreadsheets and manual messages.',
     challenge:
