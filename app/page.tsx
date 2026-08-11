@@ -102,7 +102,7 @@ export default function HomePage() {
           <Reveal>
             <p className="text-[13px] font-medium uppercase tracking-[0.22em] text-muted">Services</p>
             <h2 className="mt-4 max-w-xl font-display text-[32px] leading-[1.2] text-ink md:text-[42px]">
-              Two ways to work together.
+              Three ways to work together.
             </h2>
           </Reveal>
           <div className="mt-12">
@@ -131,7 +131,7 @@ export default function HomePage() {
 
       {/* ── Pricing ── */}
       <section className="bg-soft-white">
-        <div className="mx-auto max-w-5xl px-5 py-24 md:px-8 md:py-32">
+        <div className="mx-auto max-w-6xl px-5 py-24 md:px-8 md:py-32">
           <Reveal>
             <p className="text-[13px] font-medium uppercase tracking-[0.22em] text-muted">
               Flat-rate development

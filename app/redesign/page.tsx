@@ -7,37 +7,37 @@ import PricingCard from '@/components/PricingCard'
 import { getTier, TIER_ICONS } from '@/lib/pricing'
 
 export const metadata: Metadata = {
-  title: 'Web Design',
+  title: 'Website Redesign',
   description:
-    'Custom-designed, hand-coded marketing websites built for clarity, speed, and conversion — starting at $2,500.',
+    'Already have a website? We take what you have and rebuild it from scratch with a cleaner, faster, modern design — starting at $1,250.',
 }
 
 const FIT = [
-  'Local businesses and service companies whose website undersells the work they actually do',
-  'Founders and professionals who need a site that reads as credible, not templated',
-  'Teams replacing a slow, outdated, or drag-and-drop site with something built properly',
+  'Businesses with outdated websites',
+  'Clubs and organizations ready for a modern look',
+  'Companies whose current site is difficult to use on mobile',
+  'Businesses that don’t need an entirely new digital strategy',
 ]
 
 const PROCESS = [
-  { n: '01', title: 'Discover',  body: 'A short call to understand your business, your audience, and what the site needs to do for you.' },
-  { n: '02', title: 'Define',    body: 'A fixed quote and page-by-page scope, agreed before any design work starts.' },
-  { n: '03', title: 'Design',    body: 'A full design direction for your review — structure, messaging hierarchy, and visual system.' },
-  { n: '04', title: 'Build',     body: 'The approved design is hand-coded, tested across devices, and prepared for launch.' },
-  { n: '05', title: 'Launch',    body: 'Domain, hosting, and analytics connected, with 30 days of support once you’re live.' },
+  { n: '01', title: 'Discover', body: 'A short call to understand your business and what isn’t working about your current site.' },
+  { n: '02', title: 'Define',   body: 'A fixed quote and page-by-page scope, agreed before any design work starts.' },
+  { n: '03', title: 'Rebuild',  body: 'Your existing content and brand become the foundation for a site rebuilt entirely from scratch.' },
+  { n: '04', title: 'Launch',   body: 'The new site replaces the old one, with 30 days of support once you’re live.' },
 ]
 
-const tier = getTier('web-design')!
+const tier = getTier('redesign')!
 const TierIcon = TIER_ICONS[tier.slug]
 
-export default function WebDesignPage() {
+export default function RedesignPage() {
   return (
     <main>
       <PageHero
-        image="/studio-office-desk.webp"
-        objectPosition="45% 55%"
-        eyebrow="Web Design"
-        title="A website that reads as credible as the work behind it."
-        description="Custom-designed, hand-coded marketing sites — built for clarity, speed, and a clear path to a decision. No themes, no drag-and-drop builders."
+        image="/studio-work-gallery.webp"
+        objectPosition="50% 50%"
+        eyebrow="Website Redesign"
+        title="Already have a website? Let’s make it feel new."
+        description="We take your existing website, keep what works, and rebuild the experience from the ground up with a cleaner, faster, modern design — built specifically for your business, not a template."
       />
 
       <section className="bg-soft-white">
@@ -55,6 +55,10 @@ export default function WebDesignPage() {
                       </li>
                     ))}
                   </ul>
+                  <p className="mt-6 border-t border-border-neutral pt-6 text-[14px] leading-relaxed text-muted">
+                    No templates. No generic theme swaps. Your existing content and brand become
+                    the starting point — we use it to rebuild the actual website from scratch.
+                  </p>
                 </div>
               </Reveal>
 
@@ -79,13 +83,9 @@ export default function WebDesignPage() {
             <Reveal delay={0.1}>
               <PricingCard tier={tier} icon={<TierIcon className="h-5 w-5 text-ink" strokeWidth={1.5} />} />
               <p className="mt-4 text-center text-[13px] text-muted">
-                Already have a site that just needs a rebuild?{' '}
-                <Link href="/redesign" className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
-                  See Redesign
-                </Link>
-                {' '}· Need more than a marketing site?{' '}
-                <Link href="/applications" className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
-                  See Applications
+                Need a completely new site instead?{' '}
+                <Link href="/web-design" className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
+                  See Web Design
                 </Link>
               </p>
             </Reveal>
@@ -94,10 +94,10 @@ export default function WebDesignPage() {
       </section>
 
       <CinematicCTA
-        eyebrow="Web Design"
-        headline="Ready to talk through your project?"
-        body="Tell me about your business and what you need your site to do, and I’ll get back to you within one business day."
-        secondary={{ label: 'See Applications', href: '/applications' }}
+        eyebrow="Website Redesign"
+        headline="Ready to give your site a rebuild?"
+        body="Send over your current site and tell me what isn’t working, and I’ll get back to you within one business day."
+        secondary={{ label: 'See Web Design', href: '/web-design' }}
       />
     </main>
   )

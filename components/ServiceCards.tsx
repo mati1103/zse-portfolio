@@ -2,7 +2,7 @@
 
 import Link from 'next/link'
 import { motion } from 'framer-motion'
-import { ArrowRight, Globe, Database, type LucideIcon } from 'lucide-react'
+import { ArrowRight, Globe, Database, RefreshCw, type LucideIcon } from 'lucide-react'
 
 interface Service {
   icon: LucideIcon
@@ -16,17 +16,26 @@ interface Service {
 
 const SERVICES: Service[] = [
   {
+    icon: RefreshCw,
+    eyebrow: '01 — Redesign',
+    title: 'Give me what you have. I’ll rebuild it properly.',
+    body: 'For businesses that already have a website, just not one that works anymore. Your existing content and brand become the foundation for a completely rebuilt, modern experience — no templates, no theme swaps.',
+    points: ['Existing content & brand as the starting point', 'Rebuilt from scratch, not reskinned', 'Faster, mobile-friendly, easier to use'],
+    href: '/redesign',
+    cta: 'Learn about Redesign',
+  },
+  {
     icon: Globe,
-    eyebrow: '01 — Web Design',
+    eyebrow: '02 — Web Design',
     title: 'Marketing sites that earn the click.',
-    body: 'For businesses whose current site doesn’t reflect the quality of the work behind it. Every page is designed around your message, built for speed and mobile, and structured to move a visitor toward a decision.',
+    body: 'For businesses that need a completely new site built around their message. Every page is designed from the ground up, built for speed and mobile, and structured to move a visitor toward a decision.',
     points: ['Custom design and copy direction, not a theme', 'Fast, mobile-first, and built for search', 'Structured around a clear conversion path'],
     href: '/web-design',
     cta: 'Learn about Web Design',
   },
   {
     icon: Database,
-    eyebrow: '02 — Applications',
+    eyebrow: '03 — Applications',
     title: 'Software for how your business runs.',
     body: 'For businesses that have outgrown spreadsheets and off-the-shelf tools. Client portals, booking systems, internal dashboards, and workflow software built around your actual operation — not a generic SaaS shape.',
     points: ['Custom portals, dashboards, and booking systems', 'Real databases, authentication, and role-based access', 'Built to be owned, understood, and grown on'],
@@ -37,7 +46,7 @@ const SERVICES: Service[] = [
 
 export default function ServiceCards() {
   return (
-    <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+    <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
       {SERVICES.map((s) => (
         <motion.div
           key={s.href}

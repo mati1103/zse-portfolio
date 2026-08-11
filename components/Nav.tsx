@@ -8,6 +8,7 @@ import { Menu, X } from 'lucide-react'
 
 const NAV_ITEMS = [
   { href: '/studio',       label: 'Studio' },
+  { href: '/redesign',     label: 'Redesign' },
   { href: '/web-design',   label: 'Web Design' },
   { href: '/applications', label: 'Applications' },
   { href: '/process',      label: 'Process' },

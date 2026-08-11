@@ -6,7 +6,7 @@ import { TIERS, MAINTENANCE, TIER_ICONS } from '@/lib/pricing'
 export default function PricingTiers() {
   return (
     <div>
-      <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+      <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
         {TIERS.map((tier, i) => {
           const Icon = TIER_ICONS[tier.slug]
           return (

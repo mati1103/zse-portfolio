@@ -1,4 +1,4 @@
-import { Globe, Database, type LucideIcon } from 'lucide-react'
+import { Globe, Database, RefreshCw, type LucideIcon } from 'lucide-react'
 
 export interface Tier {
   slug: string
@@ -12,14 +12,31 @@ export interface Tier {
 }
 
 export const TIER_ICONS: Record<string, LucideIcon> = {
+  'redesign': RefreshCw,
   'web-design': Globe,
   'applications': Database,
 }
 
 export const TIERS: Tier[] = [
   {
+    slug: 'redesign',
+    name: 'Website Redesign',
+    price: '$1,250',
+    timeline: '1–2 weeks',
+    highlight: false,
+    bestFor: ['Businesses with an outdated or hard-to-use site', 'Clubs & organizations ready for a modern look', 'Sites that just need a rebuild, not a new strategy'],
+    includes: [
+      'Up to 5 redesigned pages',
+      'Complete visual redesign, mobile-responsive rebuild',
+      'Improved navigation & performance optimization',
+      'Existing content migration · basic SEO setup',
+      '2 revision rounds · 30-day post-launch support',
+    ],
+    extra: '+$150 / page · +$500 / integration',
+  },
+  {
     slug: 'web-design',
-    name: 'Marketing Website',
+    name: 'Custom Website',
     price: '$2,500',
     timeline: '3–4 weeks',
     highlight: false,

@@ -13,7 +13,7 @@ const LABEL_CLASS = 'mb-1.5 block text-[12px] font-medium uppercase tracking-[0.
 export default function ContactForm() {
   const [form, setForm] = useState({
     name: '', email: '', phone: '', company: '',
-    service: 'Marketing Website', description: '', timeline: 'Flexible',
+    service: 'Custom Website', description: '', timeline: 'Flexible',
   })
   const [status,   setStatus]   = useState<'idle' | 'loading' | 'success' | 'error'>('idle')
   const [errorMsg, setErrorMsg] = useState('')
@@ -82,7 +82,8 @@ export default function ContactForm() {
         <div>
           <label className={LABEL_CLASS}>Service</label>
           <select value={form.service} onChange={set('service')} className={INPUT_CLASS}>
-            <option value="Marketing Website">Marketing Website</option>
+            <option value="Website Redesign">Website Redesign</option>
+            <option value="Custom Website">Custom Website</option>
             <option value="Web Application">Web Application</option>
             <option value="Maintenance Plan">Maintenance Plan</option>
             <option value="Other">Other</option>

@@ -89,6 +89,10 @@ export default function ApplicationsPage() {
                 <Link href="/web-design" className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
                   See Web Design
                 </Link>
+                {' '}· Already have a site to rebuild?{' '}
+                <Link href="/redesign" className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
+                  See Redesign
+                </Link>
               </p>
             </Reveal>
           </div>
