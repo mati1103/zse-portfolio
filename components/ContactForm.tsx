@@ -59,11 +59,11 @@ export default function ContactForm() {
       <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
         <div>
           <label className={LABEL_CLASS}>Name *</label>
-          <input required value={form.name} onChange={set('name')} placeholder="Jane Smith" className={INPUT_CLASS} />
+          <input required value={form.name} onChange={set('name')} placeholder="Alex Morgan" className={INPUT_CLASS} />
         </div>
         <div>
           <label className={LABEL_CLASS}>Email *</label>
-          <input required type="email" value={form.email} onChange={set('email')} placeholder="jane@company.com" className={INPUT_CLASS} />
+          <input required type="email" value={form.email} onChange={set('email')} placeholder="alex@company.com" className={INPUT_CLASS} />
         </div>
       </div>
 
