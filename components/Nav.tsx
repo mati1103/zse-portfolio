@@ -61,7 +61,8 @@ export default function Nav() {
             light ? 'text-warm-light' : 'text-ink'
           }`}
         >
-          Zarembka
+          <span className="sm:hidden">ZSE</span>
+          <span className="hidden sm:inline">Zarembka</span>
           <span className={`ml-2.5 hidden text-[11px] font-sans font-medium uppercase tracking-[0.18em] sm:inline ${
             light ? 'text-warm-light/75' : 'text-muted'
           }`}>
