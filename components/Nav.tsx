@@ -12,7 +12,7 @@ const NAV_ITEMS = [
   { href: '/web-design',   label: 'Web Design' },
   { href: '/applications', label: 'Applications' },
   { href: '/process',      label: 'Process' },
-  { href: '/work',         label: 'Work' },
+  { href: '/work',         label: 'Portfolio' },
 ]
 
 export default function Nav() {

@@ -9,7 +9,7 @@ interface BrowserFrameProps {
 
 export default function BrowserFrame({ src, alt, priority = false, className = '' }: BrowserFrameProps) {
   return (
-    <div className={`overflow-hidden rounded-2xl border border-border-neutral bg-soft-white shadow-lg transition-transform duration-300 hover:-translate-y-1.5 ${className}`}>
+    <div className={`overflow-hidden rounded-lg border border-border-neutral bg-soft-white shadow-sm transition-transform duration-300 hover:scale-[1.015] ${className}`}>
       <div className="flex items-center gap-1.5 bg-ink/[0.04] px-3.5 py-2.5">
         <span className="h-2 w-2 rounded-full bg-ink/15" />
         <span className="h-2 w-2 rounded-full bg-ink/15" />
