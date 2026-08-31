@@ -128,13 +128,6 @@ export const PROJECTS: Project[] = [
       'A single platform brings athlete booking, coach scheduling, and business reporting together, with role-based access built into the database layer so athletes, coaches, and ownership each see only what belongs to them.',
     outcome:
       'The platform now runs the entire booking and coaching workflow end to end, with every push to the main branch deploying automatically to production in under thirty seconds.',
-    testimonial: {
-      quote:
-        'They actually took the time to understand how the business operates — the coaches, the athletes, the workflows — and built a platform that handles all of it seamlessly. Bookings, scheduling, payments, and business reporting in one place. The pricing was fixed from day one, the process was completely transparent, and they didn’t consider it done until I was genuinely happy with it. I can’t recommend them enough.',
-      initials: 'KL',
-      name: 'Kareem Ladki',
-      role: 'Owner · FuturePro Soccer',
-    },
   },
   {
     slug: 'nexttouch',
