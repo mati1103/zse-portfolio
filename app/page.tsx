@@ -35,7 +35,7 @@ export default function HomePage() {
           }}
         />
 
-        <div className="relative z-10 w-full max-w-3xl px-5 pb-16 pt-32 md:px-10 md:pb-24 lg:px-14">
+        <div className="relative z-10 w-full max-w-3xl px-5 pb-16 pt-32 md:px-10 md:pb-24 lg:px-24">
           <Reveal>
             <p className="mb-5 text-[13px] font-medium uppercase tracking-[0.22em] text-warm-light/75">
               Zarembka Software Engineering
