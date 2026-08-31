@@ -72,7 +72,7 @@ export default function ServiceCards() {
 
           <Link
             href={s.href}
-            className="group mt-8 inline-flex items-center gap-2 text-[14px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
+            className="group mt-auto inline-flex items-center gap-2 pt-8 text-[14px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
           >
             {s.cta}
             <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-1" strokeWidth={1.75} />
