@@ -1,6 +1,6 @@
 import {
   Bell, CalendarDays, Cloud, Database, DollarSign, GitBranch,
-  Globe, LayoutDashboard, Server, Shield, Terminal, Users, Video, Zap,
+  Globe, LayoutDashboard, Mail, Server, Sheet, Shield, Terminal, Users, Video, Zap,
   type LucideIcon,
 } from 'lucide-react'
 
@@ -220,6 +220,104 @@ export const PROJECTS: Project[] = [
       'A mobile-first product pairs a video feedback loop between players and coaches with club and team management tools, plus a dedicated safety and moderation layer built around a mostly-minor user base from day one.',
     outcome:
       'The web layer — marketing, signup, and auth — deploys continuously through Vercel, while the companion mobile app ships separately through TestFlight and Google Play.',
+  },
+  {
+    slug: 'palm-beach-athletic',
+    tag: 'Original build — Youth soccer club launch site',
+    nameHighlight: 'Palm Beach',
+    nameRest: ' Athletic',
+    category: 'Original build — Youth soccer club launch site',
+    tags: ['Marketing Website', 'Lead Generation', 'Youth Sports'],
+    summary: 'A launch marketing site building the waitlist and clinic pipeline for a new Palm Beach County youth soccer club ahead of its 2027 opening.',
+    description:
+      "A pre-launch marketing website for Palm Beach Athletic, a youth soccer club opening in Palm Beach County in 2027. The site introduces the club's programs and coaching philosophy, runs free welcome clinics through a full registration flow, and captures every visitor and sign-up straight into a live Google Sheets operations hub.",
+    websiteUrl: 'https://pbathletic.org',
+    statusLabel: 'Deployed & live',
+    year: '2026',
+    image: '/pba-hero.png',
+    imageAlt: 'Palm Beach Athletic — homepage hero',
+    features: [
+      {
+        Icon: Users,
+        label: 'Interest List',
+        desc: "Parents join the waitlist ahead of the club's 2027 opening with player details and age group, so the club builds its founding roster before a single ball is kicked.",
+      },
+      {
+        Icon: CalendarDays,
+        label: 'Free Clinic Registration',
+        desc: 'Each welcome clinic gets its own registration flow — date, time, and location up front, parent and player details captured on submit.',
+      },
+      {
+        Icon: Sheet,
+        label: 'Google Sheets Operations Hub',
+        desc: 'Interest-list sign-ups, clinic registrations, and website analytics all write directly into Google Sheets, each with its own auto-built dashboard tab — no separate admin panel needed.',
+      },
+      {
+        Icon: Mail,
+        label: 'Automated Email Confirmations',
+        desc: 'Every clinic registration, interest-list sign-up, and contact form submission triggers a confirmation email through Resend, plus an internal notification to the club.',
+      },
+    ],
+    previews: [
+      {
+        src: '/pba-hero.png',
+        alt: 'Homepage hero',
+        title: 'Homepage Hero',
+        desc: 'The launch message and primary calls to action — join the interest list or reserve a spot at a free clinic — set against Palm Beach County\'s courts and coastline.',
+      },
+      {
+        src: '/pba-clinic-register.png',
+        alt: 'Clinic registration modal',
+        title: 'Clinic Registration',
+        desc: 'A focused modal captures parent and player details for a specific clinic date, time, and location, then writes the row straight to Google Sheets.',
+      },
+      {
+        src: '/pba-interest-list.png',
+        alt: 'Interest list signup form',
+        title: 'Interest List Signup',
+        desc: 'Parents register interest ahead of the 2027 launch with player age group and current level, building the club\'s founding waitlist.',
+      },
+    ],
+    pipelineIntro:
+      'Every code change ships to production automatically. Push to main — Vercel picks it up, builds the Next.js app, and the live site updates in under a minute. No manual deploys, no downtime.',
+    pipeline: [
+      { label: 'Write Code', sub: 'TS + Tailwind',   Icon: Terminal },
+      { label: 'git push',   sub: 'origin/main',     Icon: GitBranch },
+      { label: 'Vercel CI',  sub: 'Build fires',     Icon: Zap },
+      { label: 'Build',      sub: 'Next.js compile', Icon: Server },
+      { label: 'Live',       sub: 'Global edge',     Icon: Globe },
+    ],
+    infra: [
+      {
+        Icon: Sheet,
+        label: 'Google Sheets API',
+        desc: 'A service-account JWT integration appends interest-list, clinic-registration, and analytics events directly into Google Sheets, auto-creating a formatted dashboard tab per clinic on first registration.',
+      },
+      {
+        Icon: Database,
+        label: 'Live Website Analytics',
+        desc: 'Every visit, page view, and key conversion event (interest-list and clinic-registration submits) logs to a dedicated analytics spreadsheet in real time — no third-party analytics tool required.',
+      },
+      {
+        Icon: Mail,
+        label: 'Resend',
+        desc: 'Transactional emails for clinic registrations, interest-list sign-ups, and contact form messages — a confirmation to the visitor and a notification to the club, sent from a templated HTML layout.',
+      },
+      {
+        Icon: Zap,
+        label: 'Vercel — CI/CD',
+        desc: 'pbathletic.org is served from Vercel\'s edge network, with every push to main triggering an automatic production build and zero-downtime deploy.',
+      },
+    ],
+    techStack: ['Next.js', 'TypeScript', 'Tailwind CSS', 'Google Sheets API', 'Resend', 'Vercel'],
+    overview:
+      "Palm Beach Athletic is a new youth soccer club set to open in Palm Beach County in 2027. Since the club and its facilities don't exist yet, the entire job of the website is to build an audience — families who'll be ready to sign up the moment doors open.",
+    challenge:
+      "A launch site for a club that isn't open yet lives or dies on lead capture: every visitor who cares needs an easy way to get on the list, every free clinic needs a real registration flow, and the club's small team needed to see and act on that data without logging into a custom admin panel.",
+    solutionSummary:
+      'The site pairs a program- and philosophy-driven marketing experience with an interest-list flow and a full clinic registration system, all writing straight into Google Sheets — so the club\'s existing spreadsheet workflow becomes the system of record, with dashboards generated automatically as sign-ups come in.',
+    outcome:
+      "The site is live at pbathletic.org ahead of the club's 2027 launch, capturing interest-list sign-ups and free clinic registrations into a self-updating Google Sheets hub, with confirmation emails going out automatically on every submission.",
   },
 ]
 

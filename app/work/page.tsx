@@ -11,7 +11,7 @@ export const metadata: Metadata = {
   description: 'Selected projects built by Zarembka Software Engineering.',
 }
 
-const [futurePro, nextTouch] = PROJECTS
+const [futurePro, nextTouch, palmBeachAthletic] = PROJECTS
 
 // Display-only copy for the portfolio overview — condensed from the full
 // project data in lib/projects.ts (which still powers the case-study pages).
@@ -31,6 +31,15 @@ const NEXTTOUCH_HIGHLIGHTS = [
   'Weekly coach-assigned training',
   'Player video submissions and feedback',
   'Club, team, and role-based access',
+]
+
+const PBA_CATEGORY = 'Marketing Website'
+const PBA_SUMMARY =
+  'A pre-launch marketing site for a new Palm Beach County youth soccer club, built to capture interest-list sign-ups and clinic registrations ahead of its 2027 opening.'
+const PBA_HIGHLIGHTS = [
+  'Interest list and free clinic registration',
+  'Live Google Sheets operations hub',
+  'Automated confirmation emails via Resend',
 ]
 
 export default function WorkPage() {
@@ -184,6 +193,68 @@ export default function WorkPage() {
                     <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} />
                   </a>
                 </div>
+              </Reveal>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* ── divider ── */}
+      <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+        <div className="border-t border-border-neutral" />
+      </div>
+
+      {/* ── 03 — Palm Beach Athletic ── */}
+      <section className="bg-soft-white">
+        <div className="mx-auto max-w-[1280px] px-5 py-16 md:px-8 md:py-24">
+          <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-center md:gap-8 lg:gap-12">
+            {/* Story */}
+            <div className="order-2 md:order-1 md:col-span-5">
+              <Reveal>
+                <p className="text-[12px] font-medium uppercase tracking-[0.2em] text-muted">
+                  <span className="text-ink">03</span> / {PBA_CATEGORY}
+                </p>
+                <h2 className="mt-3 font-display text-[32px] leading-[1.12] text-ink md:text-[42px]">
+                  Palm Beach<span className="text-muted"> Athletic</span>
+                </h2>
+                <p className="mt-4 max-w-md text-[15.5px] leading-relaxed text-muted">
+                  {PBA_SUMMARY}
+                </p>
+
+                <ul className="mt-7 space-y-2.5">
+                  {PBA_HIGHLIGHTS.map((h) => (
+                    <li key={h} className="flex items-baseline gap-2.5 text-[14.5px] text-ink">
+                      <span className="text-cobalt">·</span>
+                      {h}
+                    </li>
+                  ))}
+                </ul>
+
+                <div className="mt-8 flex flex-wrap items-center gap-6">
+                  <Link
+                    href={`/work/${palmBeachAthletic.slug}`}
+                    className="group inline-flex items-center gap-2 text-[14px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
+                  >
+                    View case study
+                    <ArrowRight className="h-4 w-4 transition-transform duration-200 group-hover:translate-x-0.5" strokeWidth={1.75} />
+                  </Link>
+                  <a
+                    href={palmBeachAthletic.websiteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group inline-flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors duration-200 hover:text-ink"
+                  >
+                    Visit website
+                    <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} />
+                  </a>
+                </div>
+              </Reveal>
+            </div>
+
+            {/* Media */}
+            <div className="order-1 md:order-2 md:col-span-7">
+              <Reveal delay={0.08}>
+                <BrowserFrame src={palmBeachAthletic.image} alt={palmBeachAthletic.imageAlt} />
               </Reveal>
             </div>
           </div>
