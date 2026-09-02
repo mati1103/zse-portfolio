@@ -142,8 +142,8 @@ export const PROJECTS: Project[] = [
     websiteUrl: 'https://nexttouchsports.com',
     statusLabel: 'Deployed & live',
     year: '2026',
-    image: '/nexttouch-lesson.png',
-    imageAlt: 'NextTouch — practice and video submission',
+    image: '/nexttouch-hero.png',
+    imageAlt: 'NextTouch — marketing site hero',
     features: [
       {
         Icon: Video,
