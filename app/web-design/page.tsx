@@ -1,10 +1,13 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
+import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Reveal from '@/components/Reveal'
 import PageHero from '@/components/PageHero'
 import CinematicCTA from '@/components/CinematicCTA'
 import PricingCard from '@/components/PricingCard'
 import { getTier, TIER_ICONS } from '@/lib/pricing'
+import { getProject } from '@/lib/projects'
 
 export const metadata: Metadata = {
   title: 'Web Design',
@@ -28,6 +31,7 @@ const PROCESS = [
 
 const tier = getTier('web-design')!
 const TierIcon = TIER_ICONS[tier.slug]
+const example = getProject('palm-beach-athletic')!
 
 export default function WebDesignPage() {
   return (
@@ -59,6 +63,49 @@ export default function WebDesignPage() {
               </Reveal>
 
               <Reveal delay={0.06}>
+                <div className="card-surface overflow-hidden rounded-2xl">
+                  <Link href={`/work/${example.slug}`} className="relative block aspect-[16/9] w-full overflow-hidden">
+                    <Image
+                      src={example.image}
+                      alt={example.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 45vw, 90vw"
+                      loading="lazy"
+                      className="object-cover object-top"
+                    />
+                  </Link>
+                  <div className="p-8">
+                    <p className="text-[12px] font-medium uppercase tracking-[0.16em] text-muted">A recent example</p>
+                    <h2 className="mt-2 font-display text-[22px] text-ink">
+                      {example.nameHighlight}
+                      <span className="text-muted">{example.nameRest}</span>
+                    </h2>
+                    <p className="mt-3 text-[15px] leading-relaxed text-muted">
+                      A launch marketing site for a new Palm Beach County youth soccer club — hand-coded exactly like this, no theme or page builder underneath.
+                    </p>
+                    <div className="mt-5 flex flex-wrap items-center gap-5">
+                      <Link
+                        href={`/work/${example.slug}`}
+                        className="inline-flex items-center gap-1.5 text-[14px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
+                      >
+                        View case study
+                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
+                      </Link>
+                      <a
+                        href={example.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[14px] font-medium text-muted transition-colors duration-200 hover:text-ink"
+                      >
+                        Visit website
+                        <ArrowUpRight className="h-3.5 w-3.5" strokeWidth={1.75} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+
+              <Reveal delay={0.1}>
                 <div className="card-surface rounded-2xl p-8">
                   <h2 className="font-display text-[22px] text-ink">How it runs</h2>
                   <div className="mt-6 space-y-5">

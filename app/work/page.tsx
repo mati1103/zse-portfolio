@@ -1,4 +1,5 @@
 import type { Metadata } from 'next'
+import Image from 'next/image'
 import Link from 'next/link'
 import { ArrowRight, ArrowUpRight } from 'lucide-react'
 import Reveal from '@/components/Reveal'
@@ -65,6 +66,60 @@ export default function WorkPage() {
               how the business actually operates, not a template.
             </p>
           </Reveal>
+        </div>
+      </section>
+
+      {/* ── Quick-nav project cards ── */}
+      <section className="bg-soft-white pb-16 md:pb-20">
+        <div className="mx-auto max-w-[1280px] px-5 md:px-8">
+          <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3">
+            {PROJECTS.map((project, i) => (
+              <Reveal key={project.slug} delay={i * 0.06}>
+                <div className="group overflow-hidden rounded-2xl border border-border-neutral bg-soft-white transition-shadow duration-300 hover:shadow-lg">
+                  <Link href={`/work/${project.slug}`} className="relative block aspect-[16/10] w-full overflow-hidden bg-ink/5">
+                    <Image
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fill
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      loading="lazy"
+                      className="object-cover object-top transition-transform duration-500 group-hover:scale-[1.03]"
+                    />
+                  </Link>
+                  <div className="p-6">
+                    <p className="text-[11px] font-medium uppercase tracking-[0.16em] text-muted">
+                      {project.category}
+                    </p>
+                    <h3 className="mt-2 font-display text-[22px] leading-tight text-ink">
+                      {project.nameHighlight}
+                      <span className="text-muted">{project.nameRest}</span>
+                    </h3>
+                    <p className="mt-3 line-clamp-2 text-[14px] leading-relaxed text-muted">
+                      {project.summary}
+                    </p>
+                    <div className="mt-5 flex items-center gap-5">
+                      <Link
+                        href={`/work/${project.slug}`}
+                        className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-ink transition-colors duration-200 hover:text-cobalt"
+                      >
+                        View case study
+                        <ArrowRight className="h-3.5 w-3.5" strokeWidth={1.75} />
+                      </Link>
+                      <a
+                        href={project.websiteUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-1.5 text-[13.5px] font-medium text-muted transition-colors duration-200 hover:text-ink"
+                      >
+                        Website
+                        <ArrowUpRight className="h-3 w-3" strokeWidth={1.75} />
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
       </section>
 
