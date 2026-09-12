@@ -223,10 +223,10 @@ export const PROJECTS: Project[] = [
   },
   {
     slug: 'palm-beach-athletic',
-    tag: 'Original build — Youth soccer club launch site',
+    tag: 'Client project — Youth soccer club launch site',
     nameHighlight: 'Palm Beach',
     nameRest: ' Athletic',
-    category: 'Original build — Youth soccer club launch site',
+    category: 'Client project — Youth soccer club launch site',
     tags: ['Marketing Website', 'Lead Generation', 'Youth Sports'],
     summary: 'A launch marketing site building the waitlist and clinic pipeline for a new Palm Beach County youth soccer club ahead of its 2027 opening.',
     description:
