@@ -19,7 +19,7 @@ export default function ProductVisuals({ previews }: { previews: Preview[] }) {
 
   return (
     <>
-      <div className="grid grid-cols-1 gap-8 md:grid-cols-2">
+      <div className={`grid grid-cols-1 gap-8 md:grid-cols-2 ${previews.length === 3 ? 'lg:grid-cols-3' : ''}`}>
         {previews.map((preview, i) => (
           <Reveal key={preview.title} delay={i * 0.06}>
             <div className="overflow-hidden rounded-2xl border border-border-neutral">

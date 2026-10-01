@@ -191,20 +191,16 @@ export default function WorkPage() {
           <div className="grid grid-cols-1 gap-10 md:grid-cols-12 md:items-center md:gap-8 lg:gap-12">
             {/* Media */}
             <div className="md:col-span-7">
-              <div className="mx-auto grid max-w-md grid-cols-2 gap-5 md:max-w-none md:gap-7">
-                <Reveal delay={0.06}>
-                  <PhoneFrame
-                    src={nextTouch.previews[0].src}
-                    alt={nextTouch.previews[0].alt}
-                  />
-                </Reveal>
-                <Reveal delay={0.14}>
-                  <PhoneFrame
-                    src={nextTouch.previews[1].src}
-                    alt={nextTouch.previews[1].alt}
-                    className="mt-8 md:mt-12"
-                  />
-                </Reveal>
+              <div className="mx-auto grid max-w-md grid-cols-3 gap-3 md:max-w-none md:gap-5">
+                {nextTouch.previews.map((preview, i) => (
+                  <Reveal key={preview.src} delay={0.06 + i * 0.08}>
+                    <PhoneFrame
+                      src={preview.src}
+                      alt={preview.alt}
+                      className={i === 1 ? 'mt-8 md:mt-12' : ''}
+                    />
+                  </Reveal>
+                ))}
               </div>
             </div>
 

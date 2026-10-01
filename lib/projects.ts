@@ -168,16 +168,22 @@ export const PROJECTS: Project[] = [
     ],
     previews: [
       {
-        src: '/nexttouch-lesson.png',
-        alt: 'Practice & Video Submission',
-        title: 'Practice & Video Submission',
-        desc: 'Players follow a step-by-step practice, then record or upload their attempt for their coach to review.',
+        src: '/nexttouch-train.png',
+        alt: 'Weekly Training Path',
+        title: 'Weekly Training Path',
+        desc: "Each week's practices are laid out as a path across the pitch. Players unlock the next drill and earn points as they complete each one.",
       },
       {
-        src: '/nexttouch-leaderboard.png',
-        alt: 'Team Leaderboard',
-        title: 'Team Leaderboard',
-        desc: 'Points earned from completed practices rank players on the team leaderboard, updated weekly.',
+        src: '/nexttouch-review.png',
+        alt: 'Coach Video Review',
+        title: 'Coach Video Review',
+        desc: "Coaches watch each submitted clip and respond with a thumbs up, a Coach's Pick, quick-feedback chips, or a written note.",
+      },
+      {
+        src: '/nexttouch-match.png',
+        alt: 'Hero Card Match',
+        title: 'Hero Card Match',
+        desc: 'Players level up their hero cards through training, then play them head-to-head in skill-based card matches.',
       },
     ],
     pipelineIntro:
