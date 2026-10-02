@@ -1,5 +1,5 @@
 import {
-  Bell, CalendarDays, Cloud, Database, DollarSign, GitBranch,
+  Bell, CalendarDays, Cloud, Database, DollarSign, Filter, GitBranch,
   Globe, LayoutDashboard, Mail, Server, Sheet, Shield, Terminal, Users, Video, Zap,
   type LucideIcon,
 } from 'lucide-react'
@@ -324,6 +324,104 @@ export const PROJECTS: Project[] = [
       'The site pairs a program- and philosophy-driven marketing experience with an interest-list flow and a full clinic registration system, all writing straight into Google Sheets — so the club\'s existing spreadsheet workflow becomes the system of record, with dashboards generated automatically as sign-ups come in.',
     outcome:
       "The site is live at pbathletic.org ahead of the club's 2027 launch, capturing interest-list sign-ups and free clinic registrations into a self-updating Google Sheets hub, with confirmation emails going out automatically on every submission.",
+  },
+  {
+    slug: 'md-fusion-soccer',
+    tag: 'Client project — Youth soccer club redesign',
+    nameHighlight: 'MD Fusion',
+    nameRest: ' Soccer',
+    category: 'Client project — Youth soccer club redesign',
+    tags: ['Website Redesign', 'Lead Generation', 'Youth Sports'],
+    summary: "A ground-up redesign of a Maryland youth soccer club's outdated Wix site, with a filterable team directory and a tryout pipeline into Google Sheets.",
+    description:
+      'A full redesign of the website for MD Fusion Soccer, a youth soccer club serving Potomac, Bethesda, Chevy Chase, and Silver Spring. The old Wix site was rebuilt from scratch with a cinematic homepage, a filterable directory of every team, and a tryout request flow that sorts each family straight into a live Google Sheets tracker.',
+    websiteUrl: 'https://www.mdfusionsoccer.com',
+    statusLabel: 'Deployed & live',
+    year: '2026',
+    image: '/mdfusion-hero.png',
+    imageAlt: 'MD Fusion Soccer — homepage hero',
+    features: [
+      {
+        Icon: Filter,
+        label: 'Filterable Team Directory',
+        desc: 'All 21 boys and girls teams on one page with real team photos, filterable by player group, age group, and league, plus a birth-year chart so parents can find their age group.',
+      },
+      {
+        Icon: Users,
+        label: 'Tryout Request Flow',
+        desc: "Parents submit one form with player and contact details. The player's age group is worked out from their birth date automatically, and PlayMetrics stays available as a second route.",
+      },
+      {
+        Icon: Sheet,
+        label: 'Google Sheets Tryout Tracker',
+        desc: 'Every request lands in a master tab and its own age-group tab, each with an auto-built dashboard breaking requests down by gender and level. No separate admin panel needed.',
+      },
+      {
+        Icon: Mail,
+        label: 'Automated Email Confirmations',
+        desc: 'Tryout requests and contact form messages each trigger a branded confirmation to the family and a notification to club staff through Resend.',
+      },
+    ],
+    previews: [
+      {
+        src: '/mdfusion-hero.png',
+        alt: 'Homepage hero',
+        title: 'Homepage Hero',
+        desc: "A full-screen hero over background match footage, with the club's mission and a tryout call to action up front.",
+      },
+      {
+        src: '/mdfusion-find-team.png',
+        alt: 'Find your team section',
+        title: 'Find Your Team',
+        desc: 'A homepage shortcut where parents pick boys or girls and an age group, then jump straight to the matching teams.',
+      },
+      {
+        src: '/mdfusion-teams.png',
+        alt: 'Teams directory',
+        title: 'Teams Directory',
+        desc: 'Each team card shows a real team photo, age group, league, and a tryout button, with filters to narrow the list.',
+      },
+    ],
+    pipelineIntro:
+      'Every code change ships to production automatically. Push to main, Vercel picks it up, builds the Next.js app, and mdfusionsoccer.com updates in under a minute. No manual deploys, no downtime.',
+    pipeline: [
+      { label: 'Write Code', sub: 'TS + Tailwind',   Icon: Terminal },
+      { label: 'git push',   sub: 'origin/main',     Icon: GitBranch },
+      { label: 'Vercel CI',  sub: 'Build fires',     Icon: Zap },
+      { label: 'Build',      sub: 'Next.js compile', Icon: Server },
+      { label: 'Live',       sub: 'Global edge',     Icon: Globe },
+    ],
+    infra: [
+      {
+        Icon: Sheet,
+        label: 'Google Sheets API',
+        desc: 'A service-account integration appends each tryout request to a master tab and its age-group tab, creating and formatting new tabs and dashboards automatically as requests come in.',
+      },
+      {
+        Icon: Mail,
+        label: 'Resend',
+        desc: 'Sends transactional email for tryout requests and contact messages, with a confirmation to the family and a notification to staff from one branded HTML template.',
+      },
+      {
+        Icon: Globe,
+        label: 'Legacy URL Redirects',
+        desc: 'All 17 old Wix URLs (season pages, boys and girls teams, the tryout form) permanently redirect to their new pages, so existing links and search rankings carry over.',
+      },
+      {
+        Icon: Zap,
+        label: 'Vercel — CI/CD',
+        desc: 'mdfusionsoccer.com moved off Wix onto Vercel\'s edge network, with every push to main triggering an automatic production build and zero-downtime deploy.',
+      },
+    ],
+    techStack: ['Next.js', 'React', 'TypeScript', 'Tailwind CSS', 'Google Sheets API', 'Resend', 'Vercel'],
+    overview:
+      "MD Fusion Soccer runs competitive and development teams for boys and girls, ages 7 through high school, across four Maryland communities. Its old Wix site was badly out of date: team pages still read \"Fall 2017,\" season pages had been copied over and over, and coach profiles were mostly logo placeholders.",
+    challenge:
+      "Families couldn't easily tell which team fit their player or how to try out, and the site was cramped on mobile, where most parents browse. The club needed a modern site that kept its mission and brand, made every team easy to find, and turned tryout interest into requests staff could act on right away.",
+    solutionSummary:
+      "The site was rebuilt from scratch on the club's existing content and brand. Stale season pages became one Programs section, every team got a filterable directory with real photos, and a tryout flow sends each request into an organized Google Sheet while emailing both the family and staff.",
+    outcome:
+      'The redesigned site is live at mdfusionsoccer.com and has fully replaced the Wix build. Old links redirect to their new pages, tryout requests sort themselves into a self-updating Google Sheets tracker, and confirmation emails go out automatically on every submission.',
   },
 ]
 

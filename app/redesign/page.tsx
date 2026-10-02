@@ -5,6 +5,7 @@ import PageHero from '@/components/PageHero'
 import CinematicCTA from '@/components/CinematicCTA'
 import PricingCard from '@/components/PricingCard'
 import { getTier, TIER_ICONS } from '@/lib/pricing'
+import { getProject } from '@/lib/projects'
 
 export const metadata: Metadata = {
   title: 'Website Redesign',
@@ -28,6 +29,7 @@ const PROCESS = [
 
 const tier = getTier('redesign')!
 const TierIcon = TIER_ICONS[tier.slug]
+const example = getProject('md-fusion-soccer')!
 
 export default function RedesignPage() {
   return (
@@ -58,6 +60,12 @@ export default function RedesignPage() {
                   <p className="mt-6 border-t border-border-neutral pt-6 text-[14px] leading-relaxed text-muted">
                     No templates. No generic theme swaps. Your existing content and brand become
                     the starting point — we use it to rebuild the actual website from scratch.
+                  </p>
+                  <p className="mt-4 text-[14px] leading-relaxed text-muted">
+                    A recent example of this in production:{' '}
+                    <Link href={`/work/${example.slug}`} className="font-medium text-ink underline decoration-border-neutral underline-offset-4 hover:decoration-ink">
+                      {example.nameHighlight}{example.nameRest}
+                    </Link>.
                   </p>
                 </div>
               </Reveal>
